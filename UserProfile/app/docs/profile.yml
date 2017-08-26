@@ -1,13 +1,12 @@
 Endpoint returning profile data for a given user
 ---
+tags:
+  - profiles
 parameters:
   - name: user_id
     in: path
     type: int
     required: true
-    schema:
-      type: integer
-      minimum: 1
     description: The user ID
   - name: datetime
     in: query
@@ -17,7 +16,12 @@ parameters:
       type: string
       format: date-time
       example: 2017-08-26T10:00
-    description: The datetime of the request (YYYY-mm-ddTHH:MM)
+    description: The UTC datetime of the request (YYYY-mm-ddTHH:MM format or empty for current time)
 responses:
   200:
     description: Profile data with several info
+    content: application/json
+  400:
+    description: Bad request
+  404:
+    description: A user with the specified ID was not found.

@@ -3,30 +3,10 @@ from flasgger import Swagger
 from flasgger.utils import swag_from
 from user_profile import UserProfile
 from datetime import datetime
+from swagger_config import swagger_template
 
 app = Flask(__name__)
-
-template = {
-    "info": {
-        "title": "User Profile API",
-        "description": "API to use in Sunset Hackathon 2017's project ",
-        "contact": {
-            "responsibleOrganization": "Team 1",
-            "responsibleDeveloper": "Me",
-            "email": "ruidamendes@ua.pt",
-        },
-        "version": "0.0.1"
-    },
-    "host": "mysite.com",  # overrides localhost:500
-    "basePath": "/api",  # base bash for blueprint registration
-    "schemes": [
-        "http",
-        "https"
-    ],
-    "specs_route": "/api/"
-}
-
-Swagger(app, template=template)
+Swagger(app, template=swagger_template)
 
 
 @app.route('/')
@@ -38,22 +18,25 @@ def index():
 @swag_from('docs/profile.yml')
 def profile(user_id):
 
+    dt = request.args.get('datetime', None)
+
     try:
-        dt = request.args.get('datetime')
-        dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M')
+        if dt:
+            dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M')
+        else:
+            dt = datetime.now()
     except ValueError:
         msg = "Wrong datetime format (YYYY-mm-ddTHH:MM)"
         abort(make_response(jsonify(meta={"status": "error"}, message=msg), 400))
 
-    # TODO: update documentation
     # TODO: add profiles dummy data
 
-    profile = UserProfile(user_id)
-    if not profile.has_profile():
+    prof = UserProfile(user_id)
+    if not prof.has_profile():
         msg = "User not found"
         abort(make_response(jsonify(meta={"status": "error"}, message=msg), 404))
 
-    data = profile.get_profile_for_datetime(dt)
+    data = prof.get_profile_for_datetime(dt)
 
     return jsonify(meta={"status": "ok"}, data=data)
 

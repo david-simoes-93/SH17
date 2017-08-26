@@ -1,17 +1,30 @@
+import json
+import os.path
+
+PROFILES_FOLDER = 'app/profiles/'
 
 
 class UserProfile:
-    _user_id = None
 
     def __init__(self, user_id):
-        self._user_id = user_id
+        self.user_id = user_id
+        self.profile_file_path = PROFILES_FOLDER + str(self.user_id) + '.json'
+        self.user_data = {}
 
     def has_profile(self):
 
-        # TODO: check if user exists
+        if os.path.exists(self.profile_file_path):
+            return True
+        return False
 
-        return True
+    def load_user_data(self):
+        with open(self.profile_file_path) as data_file:
+            return json.load(data_file)
 
-    def get_profile_for_datetime(self, datetime):
+    def get_profile_for_datetime(self, dt):
+        self.user_data = self.load_user_data()
 
-        return ["cenas para esta data e hora: " + str(datetime)]
+        # TODO: make some magic here
+        result = self.user_data
+
+        return result
