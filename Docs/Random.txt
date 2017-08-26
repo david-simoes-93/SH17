@@ -1,0 +1,48 @@
+segue por aqi
+abre mala
+preço
+rota turistica
+vai estacionar
+chama 112
+volta as X
+luz
+vidros
+AC
+112
+detetar acidentes
+
+usar motores e merdas pa simular os sensores
+
+identificar user para ajustar ao user
+	abrir o vidro vem por default
+
+
+chamar taxi, cmo reconhecemos
+
+tlm pa chamar
+screen para dashboard
+
+
+
+
+
+
+
+
+
+
+
+
+
+all 		lista de comandos
+erlander 	api d voz -> voz para text
+?			text para comando, NLP
+?			app movel para chamar taxi
+?			dashboard -> mostrar mapa, mostrar temp, mostrar other stuff
+? 			miniatura de carro -> colar la leds e cenas pa mostrar o efeito dos comandos
+? 			comandos -> efeitos (leds, merdas no dashboard)
+?			voice heat map
+?			reconhecimento d user profiles pela voz
+all			use case, definir 
+?			pitch
+
