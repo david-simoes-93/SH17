@@ -1,57 +1,21 @@
 {% extends "layout.html" %}
 {% block body %}
-<script type="text/javascript">
-  $(function() {
-    var submit_form = function(e) {
-      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
-        a: $('input[name="a"]').val(),
-        b: $('input[name="b"]').val()
-      }, function(data) {
-        $('#result').text(data.result);
-        $('input[name=a]').focus().select();
-      });
-      return false;
-    };
 
-    $('a#calculate').bind('click', submit_form);
+    <!--
+    <h1>jQuery Example</h1>
+    <p>
+      <input type="text" size="5" name="a"> +
+      <input type="text" size="5" name="b"> =
+      <span id="result">?</span>
+    <p><a href=# id="calculate">calculate server side</a>
+    -->
 
-    $('input[type=text]').bind('keydown', function(e) {
-      if (e.keyCode == 13) {
-        submit_form(e);
-      }
-    });
+    <h1>Car Dashboard (draft)</h1>
 
-    $('input[name=a]').focus();
-  });
-</script>
-<h1>jQuery Example</h1>
-<p>
-  <input type="text" size="5" name="a"> +
-  <input type="text" size="5" name="b"> =
-  <span id="result">?</span>
-<p><a href=# id="calculate">calculate server side</a>
-
-
-<h1>My First Google Map</h1>
-
-<div id="map" style="width:400px;height:400px;background:yellow"></div>
-
-<script>
-  function myMap() {
-    var mapOptions = {
-      center: new google.maps.LatLng(40.6120916,-8.7526041),
-      zoom: 17,
-      //mapTypeId: google.maps.MapTypeId.HYBRID
-    }
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-  }
-</script>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
-
+    <ul>
+        <li><a href="map">Map</a></li>
+        <li><a href="car-seats">Car occupation</a></li>
+        <li><a href="temperature">A/C Temperature</a></li>
+    </ul>
 
 {% endblock %}

@@ -1,24 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-    <script type="text/javascript">
-        $(function() {
-            var submit_form = function(e) {
-                $.getJSON($SCRIPT_ROOT + '/_car_seats_img', {
-                    n: $('#car-seats').val()
-                }, function(data) {
-                    $('#result').html('');
-                    $('<img src="'+ data.result +'">').load(function() {
-                        $(this).appendTo('#result');
-                    });
-                });
-                return false;
-            };
-
-            $('#car-seats').bind('change', submit_form);
-            $('#car-seats').trigger("change");
-        });
-    </script>
     <h1>Car seats occupation</h1>
+    <p><a href="/">Home</a></p>
     <p>
         <label for="car-seats">How many seats are occupied?</label>
         <select id="car-seats">
@@ -32,6 +15,6 @@
     </p>
     <div id="result"></div>
 
-
+    <script src="static/js/car_seats.js"></script>
 
 {% endblock %}

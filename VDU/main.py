@@ -25,9 +25,19 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/map')
+def map():
+    return render_template('map.html')
+
+
 @app.route('/car-seats')
 def car_seats():
     return render_template('car_seats.html')
+
+
+@app.route('/temperature')
+def temperature():
+    return render_template('temperature.html')
 
 
 @app.route('/_car_seats_img')
