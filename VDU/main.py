@@ -30,5 +30,18 @@ def curr_car_image():
     return '/templates/car.html' #render_template('car.html') #'/templates/car1.jpg'
 
 
-if __name__ == '__main__':
-    app.run()
+@app.route('/car-seats')
+def car_seats():
+    return render_template('car_seats.html')
+
+
+@app.route('/_car_seats_img')
+def car_seats_img():
+    n = request.args.get('n', 0, type=int)
+    img_url = 'static/images/car_seats_' + str(n) + '.png'
+    return jsonify(result=img_url)
+
+
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', debug=True, port=5000)
+
