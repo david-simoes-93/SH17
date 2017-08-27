@@ -1,19 +1,15 @@
-{% extends "layout.html" %}
-{% block body %}
-    <h1>Car seats occupation</h1>
-    <p><a href="/">Home</a></p>
-    <p>
-        <label for="car-seats">How many seats are occupied?</label>
-        <select id="car-seats">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-    </p>
-    <div id="result"></div>
+{% extends "index.html" %}
+{% block panel %}
+    <label for="car-seats">How many seats are occupied?</label>
+    <select id="car-seats">
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <div id="car-occupation-img"></div>
 
     <script src="static/js/car_seats.js"></script>
 

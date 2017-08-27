@@ -3,9 +3,9 @@ $(function() {
         $.getJSON($SCRIPT_ROOT + '/_car_seats_img', {
             n: $('#car-seats').val()
         }, function(data) {
-            $('#result').html('');
-            $('<img src="'+ data.result +'">').load(function() {
-                $(this).appendTo('#result');
+            $('#car-occupation-img').html('');
+            $('<img src="'+ data.result +'" width="600px" height="345px">').load(function() {
+                $(this).appendTo('#car-occupation-img');
             });
         });
         return false;

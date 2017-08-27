@@ -1,8 +1,9 @@
-{% extends "layout.html" %}
-{% block body %}
-    <h1>A/C Temperature</h1>
-    <p><a href="/">Home</a></p>
-    <div id="container-temperature" style="height: 300px;"></div>
+{% extends "index.html" %}
+{% block panel %}
+
+    <div class="col-lg-offset-3">
+        <div id="container-temperature" style="height: 330px;"></div>
+    </div>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>

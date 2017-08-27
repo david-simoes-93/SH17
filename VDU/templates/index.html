@@ -9,17 +9,31 @@
       <span id="result">?</span>
     <p><a href=# id="calculate">calculate server side</a>
     -->
-
-
+    <div class="row text-center">
         <h1>Car Dashboard (draft)</h1>
-        <div class="row">
-
-
-        <ul>
-            <li><a href="map">Map</a></li>
-            <li><a href="car-seats">Car occupation</a></li>
-            <li><a href="temperature">A/C Temperature</a></li>
-        </ul>
+        <div class="col-md-offset-4 col-md-4">
+          <span class="btn-group">
+            <a href="/" class="btn btn-default">Home</a>
+            <a href="/map" class="btn btn-default">Map</a>
+            <a href="/car-seats" class="btn btn-default">Car occupation</a>
+            <a href="/temperature" class="btn btn-default">Temperature</a>
+          </span>
         </div>
     </div>
-{% endblock %}
+    <div class="row">
+        <div class="wrap">
+            <img src="static/images/carPlay_hero_empty.png" height="500">
+            <div class="div_over_image">
+                {% block panel %}
+                <div class="row">
+                    <ul>
+                        <li><a href="map">Map</a></li>
+                        <li><a href="car-seats">Car occupation</a></li>
+                        <li><a href="temperature">A/C Temperature</a></li>
+                    </ul>
+                </div>
+                {% endblock panel %}
+            </div>
+        </div>
+    </div>
+{% endblock body %}

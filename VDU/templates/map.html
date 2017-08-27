@@ -1,11 +1,9 @@
-{% extends "layout.html" %}
-{% block body %}
+{% extends "index.html" %}
+{% block panel %}
 
-    <h1>My First Google Map</h1>
-    <p><a href="/">Home</a></p>
 
-    <div id="map" style="width:400px;height:400px;background:yellow"></div>
 
+    <div id="map" class="text-center map-navigation"></div>
 
     <script src="static/js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
@@ -14,4 +12,4 @@
     Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
     -->
 
-{% endblock %}
+{% endblock panel %}
