@@ -2,10 +2,11 @@
 {% block body %}
     <h1>A/C Temperature</h1>
     <p><a href="/">Home</a></p>
-    <p class="alert">
-        TO DO
-    </p>
+    <div id="container-temperature" style="height: 300px;"></div>
 
-    <!--<script src="static/js/temperature.js"></script>-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
+    <script src="static/js/temperature.js"></script>
 
 {% endblock %}
