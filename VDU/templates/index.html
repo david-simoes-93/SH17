@@ -48,10 +48,17 @@
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
+
+
+<h1>Image Update</h1>
+
+<div id="car_img" style="width:400px;height:400px;background:yellow"></div>
+
+<script>
+  setInterval(function(){
+    $('#car_img').load($SCRIPT_ROOT + '/_curr_car_image');
+  }, 2000) /* time in milliseconds (ie 2 seconds)*
+</script>
 
 
 {% endblock %}

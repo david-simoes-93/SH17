@@ -24,5 +24,11 @@ def add_numbers():
 def index():
     return render_template('index.html')
 
+
+@app.route('/_curr_car_image')
+def curr_car_image():
+    return '/templates/car.html' #render_template('car.html') #'/templates/car1.jpg'
+
+
 if __name__ == '__main__':
     app.run()
