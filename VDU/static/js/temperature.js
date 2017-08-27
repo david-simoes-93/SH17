@@ -20,12 +20,6 @@ $(function() {
                 borderWidth: 0,
                 shape: 'arc'
             }],
-            background2: {
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
-                innerRadius: '60%',
-                outerRadius: '100%',
-                shape: 'arc'
-            },
             size: '120%',
             center: ['50%', '70%']
         }],
@@ -37,19 +31,12 @@ $(function() {
         // the value axis
         yAxis: {
             stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
-                [0.9, '#DF5353'] // red
+                [0.1, '#0099ff'], // blue
+                [0.6, '#DF5353'] // red
             ],
-            lineWidth: 0,
+            lineWidth: 10,
             minorTickInterval: null,
-            tickAmount: 2,
-            title: {
-                y: -70
-            },
-            labels: {
-                y: 16
-            }
+            tickAmount: 2
         },
 
         plotOptions: {
@@ -66,8 +53,8 @@ $(function() {
         }
     };
 
-    // The speed gauge
-    var chartSpeed = Highcharts.chart('container-temperature', Highcharts.merge(gaugeOptions, {
+    // The Temperature gauge
+    var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merge(gaugeOptions, {
         title: {
             text: 'A/C Temperature',
             y: 20
@@ -83,13 +70,13 @@ $(function() {
                 enabled: false
             },
             minorTickWidth: 0,
-            tickLength: 65,
+            tickLength: 85,
             tickWidth: 5,
             tickColor: 'white',
             zIndex: 6,
             stops: [
-                [0.1, '#55BF3B'], // green
-                [0.5, '#DDDF0D'], // yellow
+                [0.1, '#e6f2ff'], // blue
+                [0.5, '#4da6ff'], // blue
                 [0.9, '#DF5353'] // red
             ]
         }],
@@ -118,12 +105,10 @@ $(function() {
     // Bring life to the dials
     setInterval(function () {
         // Speed
-        var point,
-            newVal,
-            inc;
+        var point, newVal;
 
-        if (chartSpeed) {
-            point = chartSpeed.series[0].points[0];
+        if (chartTemperature) {
+            point = chartTemperature.series[0].points[0];
             newVal = getRandomInt(15, 30);
 
             point.update(newVal);
