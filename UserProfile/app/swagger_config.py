@@ -17,4 +17,10 @@ swagger_template = {
         "http"
     ],
     "specs_route": "/api/",
+    "responses": {
+        "NotFoundError": {
+            "description": "The requested URL was not found on the server.",
+        }
+    }
+
 }

@@ -9,6 +9,13 @@ app = Flask(__name__)
 Swagger(app, template=swagger_template)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    msg = "The requested URL was not found on the server"
+    meta = {"status": "error"}
+    return jsonify(meta=meta, message=msg), 400
+
+
 @app.route('/')
 def index():
     return redirect('/apidocs', code=302)
@@ -19,7 +26,7 @@ def index():
 def profile(user_id):
 
     dt = request.args.get('datetime', None)
-
+    meta = {"status": "ok"}
     try:
         if dt:
             dt = datetime.strptime(dt, '%Y-%m-%dT%H:%M')
@@ -34,11 +41,11 @@ def profile(user_id):
     prof = UserProfile(user_id)
     if not prof.has_profile():
         msg = "User not found"
-        abort(make_response(jsonify(meta={"status": "error"}, message=msg), 404))
+        abort(make_response(jsonify(meta=meta, message=msg), 404))
 
     data = prof.get_profile_for_datetime(dt)
 
-    return jsonify(meta={"status": "ok"}, data=data)
+    return jsonify(meta=meta, data=data)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True, port=5000)
