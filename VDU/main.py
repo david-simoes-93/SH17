@@ -1,15 +1,28 @@
 # -*- coding: utf-8 -*-
-"""
-    jQuery Example
-    ~~~~~~~~~~~~~~
 
-    A simple application that shows how Flask and jQuery get along.
-
-    :copyright: (c) 2015 by Armin Ronacher.
-    :license: BSD, see LICENSE for more details.
-"""
 from flask import Flask, jsonify, render_template, request
+from flask_sse import sse
+
+
 app = Flask(__name__)
+app.config["REDIS_URL"] = "redis://localhost"
+app.register_blueprint(sse, url_prefix='/stream')
+
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template("dashboard.html")
+
+
+@app.route('/hello')
+def publish_hello():
+    msg = request.args.get('msg', 'Hello!')
+    sse.publish({"message": msg}, type='greeting')
+    return "Message sent!"
+
+########### OLD
+
+
 
 
 @app.route('/_add_numbers')

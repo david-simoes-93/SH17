@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block body %}
+    <div class="text-center">
+        <h1>Vehicle Display Unit</h1>
+    </div>
+    <div class="container text-center">
+        <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
+                GPS / MAPS
+                <div id="map" class="text-center map-navigation"></div>
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <label for="car-seats">How many seats are occupied?</label>
+                <select id="car-seats">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <div id="car-occupation-img"></div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="col-lg-12 col-md-12">
+                <img src="static/images/vehicle_top_view.png" height="400">
+            </div>
+            <div class="col-lg-12 col-md-12">
+                <canvas id="canvas-id"
+                    data-type="radial-gauge"
+                    data-width="300"
+                    data-height="300"
+                    data-units="Km/h"
+                    data-min-value="0"
+                    data-max-value="220"
+                    data-major-ticks="0,20,40,60,80,100,120,140,160,180,200,220"
+                    data-minor-ticks="2"
+                    data-stroke-ticks="true"
+                    data-highlights='[{"from": 160, "to": 220, "color": "rgba(200, 50, 50, .75)"}]'
+                    data-color-plate="#fff"
+                    data-border-shadow-width="0"
+                    data-borders="false"
+                    data-needle-type="arrow"
+                    data-needle-width="2"
+                    data-needle-circle-size="7"
+                    data-needle-circle-outer="true"
+                    data-needle-circle-inner="false"
+                    data-animation-duration="1500"
+                    data-animation-rule="linear">
+                </canvas>
+            </div>
+        </div>
+
+        <div class="col-lg-12 col-md-12">
+            <div class="col-lg-6 col-md-6">
+                SPOTIFY
+            </div>
+
+            <div class="col-lg-3 col-md-3">
+                TEMPERATURE
+            </div>
+            <div class="col-lg-3 col-md-3">
+                POWER BATTERY
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+            NOTIFICATIONS
+        </div>
+        <div id="event"></div>
+    </div>
+<script>
+    var source = new EventSource("{{ url_for('sse.stream') }}");
+</script>
+<script src="static/js/map.js"></script>
+<script src="static/js/car_seats.js"></script>
+<script src="static/js/gauge.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
+<script src="static/js/dashboard.js"></script>
+{% endblock body %}
+
