@@ -3,6 +3,16 @@
 /**************** *********************/
 $(document).ready(function() {
     var eventOutputContainer = document.getElementById("event");
+
+    client.on('message', function (topic, message) {
+      // message is Buffer
+      console.log(message.toString(), topic);
+      eventOutputContainer.innerHTML = message.toString();
+      //client.end()
+    });
+
+    /********* EventSource **************/
+    /*
     source.addEventListener('greeting', function(event) {
             var data = JSON.parse(event.data);
             //alert("The server says " + data.message);
@@ -13,6 +23,9 @@ $(document).ready(function() {
             console.log(msg);
             eventOutputContainer.innerHTML = msg;
     }, false);
+    */
+
+    /************************ Gauge Kms ************/
     var gauge = new RadialGauge({
         renderTo: 'canvas-id',
         width: 300,

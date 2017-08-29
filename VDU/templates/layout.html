@@ -10,6 +10,20 @@
     <script src="static/js/bootstrap.min.js"></script>
     <script src="static/js/ie10-viewport-bug-workaround.js"></script>
     <script type="text/javascript">var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};</script>
+    <script src="static/js/browserMqtt.js"></script>
+    <script>
+        var topics = [
+            'gps_maps', 'car_top', 'car_seats', 'kms_display',
+            'radio', 'temperature', 'power', 'alerts'
+        ];
+        var client = mqtt.connect('ws://test.mosquitto.org:8080');
+        client.on('connect', function () {
+            client.subscribe(topics);
+        });
+    </script>
+    <script>
+        var source = new EventSource("{{ url_for('sse.stream') }}");
+    </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>VDU</title>
@@ -21,4 +35,6 @@
     <footer class="footer text-center">
         <p>&copy; 2017 Team 1, Inc.</p>
     </footer>
+
+
 </body>
