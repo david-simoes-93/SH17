@@ -56,9 +56,20 @@
 
 <script>
   setInterval(function(){
-    $('#car_img').load($SCRIPT_ROOT + '/_curr_car_image');
+    $('#car_img').load($SCRIPT_ROOT + '/_car_seats_img');
   }, 2000) /* time in milliseconds (ie 2 seconds)*
 </script>
 
+<h1>Image Update 2 </h1>
+
+<div id="includedContent"></div>
+
+<script>$("#includedContent").load("/car-seats");</script>
+
+<!--<script> 
+    $(function(){
+      $("#includedContent").load("b.html"); 
+    });
+</script>--> 
 
 {% endblock %}
