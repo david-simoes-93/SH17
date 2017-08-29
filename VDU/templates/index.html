@@ -1,18 +1,7 @@
 {% extends "layout.html" %}
 {% block body %}
-<script type="text/javascript">
-  $(function() {
-    var submit_form = function(e) {
-      $.getJSON($SCRIPT_ROOT + '/_add_numbers', {
-        a: $('input[name="a"]').val(),
-        b: $('input[name="b"]').val()
-      }, function(data) {
-        $('#result').text(data.result);
-        $('input[name=a]').focus().select();
-      });
-      return false;
-    };
 
+<<<<<<< HEAD
     $('a#calculate').bind('click', submit_form);
 
     $('input[type=text]').bind('keydown', function(e) {
@@ -73,3 +62,37 @@
 </script>--> 
 
 {% endblock %}
+=======
+    <!--
+    <h1>jQuery Example</h1>
+    <p>
+      <input type="text" size="5" name="a"> +
+      <input type="text" size="5" name="b"> =
+      <span id="result">?</span>
+    <p><a href=# id="calculate">calculate server side</a>
+    -->
+    <div class="row text-center">
+        <h1>Car Dashboard (draft)</h1>
+        <div class="col-lg-offset-4 col-lg-4">
+          <span class="btn-group">
+            <a href="/" class="btn btn-default {% if request.path == '/' %} active {% endif %}">Home</a>
+            <a href="/map" class="btn btn-default {% if request.path == '/map' %} active {% endif %}">Map</a>
+            <a href="/car-seats" class="btn btn-default {% if request.path == '/car-seats' %} active {% endif %}">Car occupation</a>
+            <a href="/temperature" class="btn btn-default {% if request.path == '/temperature' %} active {% endif %}">Temperature</a>
+          </span>
+        </div>
+    </div>
+    <div class="row col-lg-12 col-md-12">
+        <div class="wrap">
+            <img src="static/images/carPlay_hero_empty.png" height="500">
+            <div class="div_over_image">
+                {% block panel %}
+                <div class="row">
+                    <img src="static/images/sunset_logo.png" height="300">
+                </div>
+                {% endblock panel %}
+            </div>
+        </div>
+    </div>
+{% endblock body %}
+>>>>>>> adacc86e744a6fa252c47593422b46cf10e93c66

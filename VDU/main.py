@@ -24,15 +24,23 @@ def add_numbers():
 def index():
     return render_template('index.html')
 
-
 @app.route('/_curr_car_image')
 def curr_car_image():
     return '/templates/car.html' #render_template('car.html') #'/templates/car1.jpg'
+
+@app.route('/map')
+def map():
+    return render_template('map.html')
 
 
 @app.route('/car-seats')
 def car_seats():
     return render_template('car_seats.html')
+
+
+@app.route('/temperature')
+def temperature():
+    return render_template('temperature.html')
 
 
 @app.route('/_car_seats_img')

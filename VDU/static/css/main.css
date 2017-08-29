@@ -1,0 +1,32 @@
+
+
+/* Custom page footer */
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+    margin: 20px 20px 20px;
+}
+
+.wrap {
+    width: 1060px;
+    height:auto;
+    margin: 20px auto auto;
+    position:relative;
+}
+.div_over_image {
+    position: absolute;
+    margin: 70px 200px;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    height:350px;
+    width: 500px;
+}
+
+/***************** MAP ********************/
+.map-navigation {
+    width:620px;
+    height:350px;
+}
