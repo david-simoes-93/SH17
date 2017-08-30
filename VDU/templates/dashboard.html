@@ -53,11 +53,11 @@
         </div>
 
         <div class="col-lg-12 col-md-12">
-            <div class="col-lg-6 col-md-6">
-                SPOTIFY
+            <div id="spotify" class="col-lg-6 col-md-6">
+                <iframe src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
             </div>
 
-            <div class="col-lg-3 col-md-3">
+            <div id="container-temperature" class="col-lg-3 col-md-3">
                 TEMPERATURE
             </div>
             <div class="col-lg-3 col-md-3">
@@ -73,6 +73,7 @@
     var source = new EventSource("{{ url_for('sse.stream') }}");
 </script>
 <script src="static/js/map.js"></script>
+<script src="static/js/spotify.js"></script>
 <script src="static/js/car_seats.js"></script>
 <script src="static/js/gauge.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
