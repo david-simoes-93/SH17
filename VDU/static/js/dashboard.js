@@ -13,6 +13,7 @@ $(document).ready(function() {
 
     /********* EventSource **************/
     /*
+    var source = new EventSource("{{ url_for('sse.stream') }}");
     source.addEventListener('greeting', function(event) {
             var data = JSON.parse(event.data);
             //alert("The server says " + data.message);

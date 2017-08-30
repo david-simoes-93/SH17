@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, jsonify, render_template, request
-from flask_sse import sse
+#from flask_sse import sse
 
 
 app = Flask(__name__)
-app.config["REDIS_URL"] = "redis://localhost"
-app.register_blueprint(sse, url_prefix='/stream')
+#app.config["REDIS_URL"] = "redis://localhost"
+#app.register_blueprint(sse, url_prefix='/stream')
 
 
 @app.route('/dashboard')
@@ -25,7 +25,7 @@ def teste():
 @app.route('/hello')
 def publish_hello():
     msg = request.args.get('msg', 'Hello!')
-    sse.publish({"message": msg}, type='greeting')
+#    sse.publish({"message": msg}, type='greeting')
     return "Message sent!"
 
 
