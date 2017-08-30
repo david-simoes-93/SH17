@@ -69,14 +69,13 @@
         </div>
         <div id="event"></div>
     </div>
-<script>
-    var source = new EventSource("{{ url_for('sse.stream') }}");
-</script>
-<script src="static/js/map.js"></script>
-<script src="static/js/spotify.js"></script>
-<script src="static/js/car_seats.js"></script>
-<script src="static/js/gauge.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
-<script src="static/js/dashboard.js"></script>
+
+    <script src="static/js/spotify.js"></script>
+    <script src="static/js/map.js"></script>
+    <script src="static/js/car_seats.js"></script>
+    <script src="static/js/gauge.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
+    <script src="static/js/dashboard.js"></script>
+
 {% endblock body %}
 
