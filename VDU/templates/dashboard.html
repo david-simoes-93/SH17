@@ -7,7 +7,7 @@
         <div class="col-lg-6 col-md-6">
             <div class="col-lg-12 col-md-12">
                 GPS / MAPS
-                <div id="map" class="text-center map-navigation"></div>
+                <div id="myMap" class="text-center map-navigation"></div>
             </div>
             <div class="col-lg-12 col-md-12">
                 <label for="car-seats">How many seats are occupied?</label>
@@ -53,9 +53,9 @@
         </div>
 
         <div class="col-lg-12 col-md-12">
-            <!--<div id="spotify" class="col-lg-6 col-md-6">
+            <div id="spotify" class="col-lg-6 col-md-6">
                 <iframe src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
-            </div>-->
+            </div>
 
             <div id="container-temperature" style="height: 330px; width:450px;" class="col-lg-3 col-md-3">
             </div>
@@ -122,22 +122,26 @@
     </div>
 
 <script>
+    var waypts = [];
+    var origin = "";
+    var destination = "";
+
     function initMap() {
         var directionsService = new google.maps.DirectionsService;
         var directionsDisplay = new google.maps.DirectionsRenderer;
-        var map = new google.maps.Map(document.getElementById('map'), {
+        var map = new google.maps.Map(document.getElementById('myMap'), {
             zoom: 6,
             center: {lat: 41.85, lng: -87.65}
         });
         directionsDisplay.setMap(map);
 
-        document.getElementById('submit').addEventListener('click', function() {
+        /*document.getElementById('submit').addEventListener('click', function() {
             calculateAndDisplayRoute(directionsService, directionsDisplay);
-        });
+        });*/
     }
 
     function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-        var waypts = [];
+        /*var waypts = [];
         var checkboxArray = document.getElementById('waypoints');
         for (var i = 0; i < checkboxArray.length; i++) {
             if (checkboxArray.options[i].selected) {
@@ -146,11 +150,11 @@
                     stopover: true
                 });
             }
-        }
+        }*/
 
         directionsService.route({
-            origin: document.getElementById('start').value,
-            destination: document.getElementById('end').value,
+            origin: origin,
+            destination: destination,
             waypoints: waypts,
             optimizeWaypoints: true,
             travelMode: 'DRIVING'
@@ -174,8 +178,29 @@
             }
         });
     }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    // random playlist
+    setInterval(function () {
+        // set some random directions and waypoints
+        start = ["Halifax, NS","Boston, MA","New York, NY","Miami, FL"];
+        waypoints = ["montreal, quebec","toronto, ont","chicago, il","winnipeg, mb","fargo, nd","calgary, ab","spokane, wa"]
+        end = ["Vancouver, BC","Seattle, WA","San Francisco, CA","Los Angeles, CA"]
+
+        origin = start[getRandomInt(0,3)]
+        waypts.push({location: waypoints[getRandomInt(0,6)], stopover: true});
+        destination = end[getRandomInt(0,3)]
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        var map = new google.maps.Map(document.getElementById('myMap'), {zoom: 6, center: {lat: 41.85, lng: -87.65}});
+        directionsDisplay.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }, 10000);
 </script>
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap">
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=initMap">
 </script>
 
     <script src="static/js/spotify.js"></script>
