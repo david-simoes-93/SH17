@@ -107,7 +107,7 @@ $(function() {
         // Speed
         var point, newVal;
 
-        if (true) {
+        if (chartTemperature) {
             point = chartTemperature.series[0].points[0];
             newVal = getRandomInt(15, 30);
 
