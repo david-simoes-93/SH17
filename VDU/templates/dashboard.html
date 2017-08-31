@@ -73,117 +73,67 @@
                     <div id="battery6" class="perc red0"></div>
                 </div>
             </div>
-
-
-
         </div>
+
+
         <div class="col-lg-12 col-md-12">
             NOTIFICATIONS
         </div>
         <div id="event"></div>
     </div>
-<!-- needed for volume-->
-<script src="http://code.jquery.com/jquery-latest.min.js"
-        type="text/javascript"></script>
-<script>
 
-    var knob = $('.knob');
-    var angle = 0;
-    var minangle = 0;
-    var maxangle = 270;
+    <div class="knob-surround">
 
+        <div class="knob"></div>
 
-    function setAngle() {
+        <span class="min">Min</span>
+        <span class="max">Max</span>
 
-        // rotate knob
-        $('.knob').css({
-            '-moz-transform':'rotate('+angle+'deg)',
-            '-webkit-transform':'rotate('+angle+'deg)',
-            '-o-transform':'rotate('+angle+'deg)',
-            '-ms-transform':'rotate('+angle+'deg)',
-            'transform':'rotate('+angle+'deg)'
-        });
-
-        // highlight ticks
-        var activeTicks = (Math.round(angle / 10) + 1);
-
-        $('.tick').removeClass('activetick');
-        $('.tick').slice(0,activeTicks).addClass('activetick');
-
-        // update % value in text
-        var pc = Math.round((angle/270)*100);
-        $('.current-value').text(pc+'%');
-
-    }
-
-    function getRandomInt(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-    // random playlist
-    setInterval(function () {
-        angle = getRandomInt(0, 270);
-        setAngle();
-    }, 1000);
-</script>
-
-<div class="knob-surround">
-
-    <div class="knob"></div>
-
-    <span class="min">Min</span>
-    <span class="max">Max</span>
-
-    <div class="ticks">
-        <div class="tick activetick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
-        <div class="tick"></div>
+        <div class="ticks">
+            <div class="tick activetick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+            <div class="tick"></div>
+        </div>
     </div>
-</div>
 
     <script src="static/js/spotify.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
     <script src="static/js/temperature.js"></script>
-
-
-
-
     <script src="static/js/map.js"></script>
     <script src="static/js/car_seats.js"></script>
     <script src="static/js/gauge.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&callback=myMap"></script>
     <script src="static/js/battery.js" />
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="static/js/volume.js"></script>
     <script src="static/js/dashboard.js"></script>
-
-
-
-
 
 {% endblock body %}
 
