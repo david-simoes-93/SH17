@@ -30,3 +30,96 @@
     width:620px;
     height:350px;
 }
+
+
+/**************** BATTERY ****************/
+
+
+.loader {
+    width: 80px;
+    height: 122px;
+    border: 5px solid #f1f1f1;
+    border-radius: 8px;
+    margin-top:25px;
+    margin-left: 85px;
+    /*float:left;*/
+}
+
+.loader:before {
+    content:"";
+    width:30px;
+    height: 15px;
+    background-color:#f1f1f1;
+    margin-top:-15px;
+    margin-left: -15px;
+    border: 0px solid #f1f1f1;
+    position:absolute;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.side-loader {
+    float:left;
+    margin-left: 100px;
+    height: 80px;
+    width: 129px;
+    border: 5px solid #f1f1f1;
+    border-radius: 8px;
+}
+
+.side-loader:after {
+    content:"";
+    height:30px;
+    width: 10px;
+    background-color:#f1f1f1;
+    margin-top:22px;
+    margin-left: 8px;
+    border: 0px solid #f1f1f1;
+    position:absolute;
+    border-bottom-right-radius: 2px;
+    border-top-right-radius: 2px;
+}
+
+.perc {
+    border-radius: 2px;
+    border:1px solid rgba(200,200,200,0.3);
+    float:left;
+    margin-top: 2px;
+    width:90%;
+    height:16px;
+    margin-left:3px;
+}
+
+.side-perc {
+    border-radius: 2px;
+    border:1px solid rgba(200,200,200,0.3);
+    float:left;
+    margin-top: 2px;
+    width:16px;
+    height:92%;
+    margin-left:3px;
+}
+
+.red0 {
+    background-color:#ed1b1e;
+}
+
+.red1 {
+    background-color:#eb6726;
+}
+
+.red2 {
+    background-color:#f1a51e;
+}
+
+.green0 {
+    background-color:#fec93b;
+}
+
+.green1 {
+    background-color:#c1c554;
+}
+
+.green2 {
+    background-color:#97c03c;
+}
