@@ -21,7 +21,7 @@ class UserProfile:
         with open(self.profile_file_path) as data_file:
             return json.load(data_file)
 
-    def get_profile_for_datetime(self, dt):
+    def get_profile(self):
         self.user_data = self.load_user_data()
 
         # TODO: make some magic here
