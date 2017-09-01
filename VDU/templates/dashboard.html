@@ -28,28 +28,11 @@
                 <img src="static/images/vehicle_top_view.png" height="400">
             </div>
             <div class="col-lg-12 col-md-12">
-                <canvas id="canvas-id"
-                    data-type="radial-gauge"
-                    data-width="300"
-                    data-height="300"
-                    data-units="Km/h"
-                    data-min-value="0"
-                    data-max-value="220"
-                    data-major-ticks="0,20,40,60,80,100,120,140,160,180,200,220"
-                    data-minor-ticks="2"
-                    data-stroke-ticks="true"
-                    data-highlights='[{"from": 160, "to": 220, "color": "rgba(200, 50, 50, .75)"}]'
-                    data-color-plate="#fff"
-                    data-border-shadow-width="0"
-                    data-borders="false"
-                    data-needle-type="arrow"
-                    data-needle-width="2"
-                    data-needle-circle-size="7"
-                    data-needle-circle-outer="true"
-                    data-needle-circle-inner="false"
-                    data-animation-duration="1500"
-                    data-animation-rule="linear">
-                </canvas>
+                <canvas id="canvas-id"></canvas>
+            </div>
+
+            <div class="col-lg-12 col-md-12">
+                <canvas id="canvas-id-rpm"></canvas>
             </div>
         </div>
 
@@ -132,22 +115,15 @@
     <script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
     <script src="static/js/temperature.js"></script>
 
-    <!--<script src="static/js/map.js"></script>-->
-
     <script src="static/js/car_seats.js"></script>
 
+    <script src="static/js/gauges.js"></script>
     <script src="static/js/gauge.min.js"></script>
 
     <script src="static/js/battery.js" />
 
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="static/js/volume.js"></script>
-
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>-->
-   <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A&language=en&libraries=places"></script>
-    <!--<script src="static/js/3976df8.js"></script>-->
-    <!--<script src="static/js/ladda.js"></script>-->
-   <!-- <script src="static/js/58fb7b8.js"></script>-->
 
     <script src="static/js/dashboard.js"></script>
 

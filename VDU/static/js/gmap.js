@@ -7,11 +7,14 @@ function initMap() {
 
     sv = new google.maps.StreetViewService();
 
-    myPano = new google.maps.StreetViewPanorama(document.getElementById('myStreetView'));
+    myPano = new google.maps.StreetViewPanorama(document.getElementById('myStreetView'), {
+        disableDefaultUI: true
+    });
 
     myMap = new google.maps.Map(document.getElementById('myMap'), {
         zoom: 16,
         center: caisCriativo,
+        disableDefaultUI: true,
         streetViewControl: false
     });
 
