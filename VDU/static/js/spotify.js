@@ -15,5 +15,5 @@ $(function() {
     setInterval(function () {
     	newVal = getRandomInt(0, 4);
     	document.getElementById("spotify").innerHTML=playlists[newVal];
-    }, 10000);
+    }, 100000);
 });

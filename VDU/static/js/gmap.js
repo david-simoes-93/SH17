@@ -1,8 +1,35 @@
+var myMap;
+var myPano;
+var sv;
+
 function initMap() {
-    new google.maps.Map(document.getElementById('myMap'), {
+    var caisCriativo = {lat: 40.6122447, lng: -8.7519046};
+
+    sv = new google.maps.StreetViewService();
+
+    myPano = new google.maps.StreetViewPanorama(document.getElementById('myStreetView'));
+
+    myMap = new google.maps.Map(document.getElementById('myMap'), {
         zoom: 16,
-        center: {lat: 40.6116702, lng: -8.7530191}
+        center: caisCriativo,
+        streetViewControl: false
     });
+
+    panoCaisC = sv.getPanorama({location: caisCriativo, radius: 50}, processSVData);
+    myPano.setPov({
+        heading: 200,
+        pitch: 0
+    });
+
+}
+
+function processSVData(data, status) {
+    if (status === 'OK') {
+        myPano.setPano(data.location.pano);
+        myPano.setVisible(true);
+    } else {
+        console.error('Street View data not found for this location.');
+    }
 }
 
 $(function() {
@@ -10,6 +37,10 @@ $(function() {
 var waypts = [];
 var origin = "";
 var destination = "";
+
+var path_points = [];
+var path_index = 0;
+var marker;
 
 
 
@@ -23,18 +54,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     }, function(response, status) {
         if (status === 'OK') {
             directionsDisplay.setDirections(response);
-            var route = response.routes[0];
-            var summaryPanel = document.getElementById('directions-panel');
-            summaryPanel.innerHTML = '';
-            // For each route, display summary information.
-            for (var i = 0; i < route.legs.length; i++) {
-                var routeSegment = i + 1;
-                summaryPanel.innerHTML += '<b>Route Segment: ' + routeSegment +
-                    '</b><br>';
-                summaryPanel.innerHTML += route.legs[i].start_address + ' to ';
-                summaryPanel.innerHTML += route.legs[i].end_address + '<br>';
-                summaryPanel.innerHTML += route.legs[i].distance.text + '<br><br>';
-            }
+            path_points = response.routes[0].overview_path
         } else {
             window.alert('Directions request failed due to ' + status);
         }
@@ -44,12 +64,12 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
+
 // random playlist
 setInterval(function () {
-    // set some random directions and waypoints
-    //start = ["Halifax, NS","Boston, MA","New York, NY","Miami, FL"];
-    //waypoints = ["montreal, quebec","toronto, ont","chicago, il","winnipeg, mb","fargo, nd","calgary, ab","spokane, wa"]
-    //end = ["Vancouver, BC","Seattle, WA","San Francisco, CA","Los Angeles, CA"]
+    if(path_index < path_points.length)
+        return;
+    path_index=0;
 
     waypoints = [new google.maps.LatLng(40.6333806,-8.7492999),
         new google.maps.LatLng(40.6410565,-8.7478676),
@@ -63,16 +83,54 @@ setInterval(function () {
         new google.maps.LatLng(40.6439987,-8.6465128),
         new google.maps.LatLng(40.6371687,-8.6517008)]
 
-    origin = new google.maps.LatLng(40.6116702, -8.7530191); //start[getRandomInt(0,3)]
+    origin = new google.maps.LatLng(40.6122447, -8.7519046); //start[getRandomInt(0,3)]
     waypts = [];
     waypts.push({location: waypoints[getRandomInt(0,6)], stopover: true});
     destination = end[getRandomInt(0,3)]
 
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
-    var map = new google.maps.Map(document.getElementById('myMap'), {});
-    directionsDisplay.setMap(map);
+    myMap = new google.maps.Map(document.getElementById('myMap'), {mapTypeId: 'roadmap'});
+    directionsDisplay.setMap(myMap);
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 }, 10000);
+
+
+    setInterval(function () {
+        if(path_index < path_points.length){
+            if(marker!=null)
+                marker.setMap(null);
+            marker = new google.maps.Marker({
+                position: path_points[path_index],
+                map: myMap
+            });
+            myMap.setCenter(path_points[path_index]);
+            myMap.setZoom(16);
+            myMap.setMapTypeId('satellite');
+
+            sv.getPanorama({location: path_points[path_index], radius: 50}, processSVData);
+
+            if(path_index+1 < path_points.length) {
+                var p1 = {
+                    x: path_points[path_index].lng(),
+                    y: path_points[path_index].lat()
+                };
+                var p2 = {
+                    x: path_points[path_index+1].lng(),
+                    y: path_points[path_index+1].lat()
+                };
+
+
+                var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI; // in geometric circle
+                angleDeg = 90-angleDeg; // in google coords
+                myPano.setPov({
+                    heading: angleDeg,
+                    pitch: 0
+                });
+            }
+
+            path_index++;
+        }
+    }, 2000);
 
 });
