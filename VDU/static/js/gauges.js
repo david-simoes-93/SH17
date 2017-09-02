@@ -3,10 +3,13 @@ var speedMaxValue = 220;
 var rpmMinValue = 0;
 var rpmMaxValue = 6000;
 
+var gaugeWidth = 200;
+var gaugeHeigth = 200;
+
 var gauge = new RadialGauge({
     renderTo: 'canvas-id',
-    width: 100,
-    height: 100,
+    width: gaugeWidth,
+    height: gaugeHeigth,
     units: "Km/h",
     minValue: speedMinValue,
     maxValue: speedMaxValue,
@@ -48,8 +51,8 @@ gauge.draw();
 
 var gaugeRPM = new RadialGauge({
     renderTo: 'canvas-id-rpm',
-    width: 300,
-    height: 300,
+    width: gaugeWidth,
+    height: gaugeHeigth,
     units: "RPM",
     minValue: rpmMinValue,
     maxValue: rpmMaxValue,
