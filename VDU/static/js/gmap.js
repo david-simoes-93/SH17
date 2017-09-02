@@ -90,6 +90,7 @@ function calculateAndDisplayRoute(directionsService, directionsDisplay) {
                     waypoint_indexes.push(minIndex);
                 }
             }
+            waypoint_indexes.push(path_points.length-1);
         } else {
             window.alert('Directions request failed due to ' + status);
         }
@@ -131,9 +132,12 @@ function vdu_nextWaypointRoute() {
     for (var i = 0; i < waypoint_indexes.length; i++) {
         if (waypoint_indexes[i] >= path_index) {
             path_index = waypoint_indexes[i]; //index of next waypoint
+            //special interaction for demo
+            waypoint_indexes = [path_points.length-1];
             break;
         }
     }
+
     driving = false;
 }
 
