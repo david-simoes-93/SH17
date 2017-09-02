@@ -21,7 +21,8 @@
             'vdu/volume/in', 'scu/frontleftwindow/in', 'scu/temperature/out', 'gcu/gesture/out',
             'scu/frontleftdoor/in', 'scu/frontrightdoor/in', 'scu/frontrightwindow/in',
             'scu/rearleftdoor/in','scu/rearleftwindow/in', 'scu/rearrightdoor/in',
-            'scu/rearrightwindow/in', 'scu/trunk/in', 'scu/status/in', 'scu/charger/out'
+            'scu/rearrightwindow/in', 'scu/trunk/in', 'scu/status/in', 'scu/charger/out',
+            'vdu/hackathon/in'
         ];
         var client = mqtt.connect('ws://test.mosquitto.org:8080');
         client.on('connect', function () {
