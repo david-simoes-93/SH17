@@ -109,7 +109,7 @@ function getRandomInt(min, max) {
 // Bring life to the dials
 setInterval(function () {
     // Speed
-    if(gauge.value>speedMinValue+10 && gaugle.value<speedMaxValue-10){
+    if(gauge.value>speedMinValue+10 && gauge.value<speedMaxValue-10){
         gauge.value = gauge.value + getRandomInt(-10, 10);
     }
 
