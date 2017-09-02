@@ -75,10 +75,10 @@ $(document).ready(function () {
                 }
                 break;
             case 'lcu/seatposition/out':
-                if(message.result.profileId!="" && message.result.profileName!="") {
-                    var id = getIdFromUID(message.result.profileId);
-                    vdu_setPersonInSeat(message.result.lastSeatPosition, id);
-                }
+                //if(message.result.profileId!="" && message.result.profileName!="") {
+                var id = getIdFromUID(message.result.profileId);
+                vdu_setPersonInSeat(message.result.lastSeatPosition, id);
+               // }
                 break;
             case 'vdu/kms_display/in':
                 vdu_kmh(parseInt(message.value));
