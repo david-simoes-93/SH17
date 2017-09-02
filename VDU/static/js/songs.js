@@ -5,6 +5,13 @@ song_paths = ['static/media/lucky.mp3',
     'static/media/bohemian.mp3'];
 song_index = 0;
 
+function vdu_playPimpSong(){
+    document.getElementById("songs_src").src = 'static/media/pimp.mp3';
+    document.getElementById("songs_control").load();
+    vdu_playSong();
+}
+
+
 function vdu_playSong(){
     document.getElementById("songs_control").play();
 }
