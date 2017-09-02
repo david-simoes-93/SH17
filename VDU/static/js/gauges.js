@@ -1,8 +1,8 @@
 /************************ Gauge Kms ************/
 var gauge = new RadialGauge({
     renderTo: 'canvas-id',
-    width: 300,
-    height: 300,
+    width: 100,
+    height: 100,
     units: "Km/h",
     minValue: 0,
     maxValue: 220,

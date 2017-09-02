@@ -12,31 +12,39 @@ $(function() {
 
 function showImage(pos, user) {
 
-    var users = ['rui', 'hugo', 'herlander', 'roger', 'david'];
-    var user = users[Math.floor(Math.random()*users.length)];
+    var users = ['rui', 'hugo', 'herlander', 'roger', 'david', 'nobody'];
 
-    var img_height = 110;
+    //var user = users[Math.floor(Math.random()*users.length)];
+    if (users.indexOf(user) == -1) {
+        user = 'nobody';
+    }
+    var img_height;
     var w_weight, h_weight;
     switch(pos) {
         case 'front_left':
-            w_weight = 0.45;
-            h_weight = 0.68;
+            img_height = 90;
+            w_weight = 0.42;
+            h_weight = 0.60;
             break;
         case 'front_right':
-            w_weight = 0.45;
-            h_weight = 0.38;
+            img_height = 90;
+            w_weight = 0.42;
+            h_weight = 0.20;
             break;
         case 'back_left':
+            img_height = 75;
             w_weight = 0.62;
-            h_weight = 0.74;
+            h_weight = 0.62;
             break;
         case 'back_right':
+            img_height = 75;
             w_weight = 0.62;
-            h_weight = 0.35;
+            h_weight = 0.18;
             break;
         case 'back_center':
+            img_height = 75;
             w_weight = 0.62;
-            h_weight = 0.54;
+            h_weight = 0.40;
             break;
         default:
             w_weight = 0;
