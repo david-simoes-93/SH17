@@ -85,10 +85,8 @@ $(document).ready(function () {
                 }
                 break;
             case 'lcu/seatposition/out':
-                //if(message.result.profileId!="" && message.result.profileName!="") {
                 var id = getIdFromUID(message.result.profileId);
                 vdu_setPersonInSeat(message.result.lastSeatPosition, id);
-               // }
                 break;
             case 'scu/pimp/in':
                 if(message.action=='open')

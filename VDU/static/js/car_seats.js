@@ -8,7 +8,7 @@ $(function() {
 
 });
 
-var firstTime = true;
+var firstTime = [true, true, true, true, true, true];
 
 function vdu_setPersonInSeat(seat, id){
     if(id>4 || id<0)
@@ -70,41 +70,30 @@ function vdu_setPersonInSeat(seat, id){
     l += offX;
     t += offY;
 
-    if (!firstTime){
-        var bubble = show_bubble(seat, l, t);
+    if (!firstTime[id]){
+        var bubble = document.createElement("img");
+        bubble.setAttribute('src', 'static/images/bubble.png');
+        bubble.setAttribute('class', 'overlays  img-circle');
+        bubble.style.left = l + "px";
+        bubble.style.top = t + "px";
+        bubble.height = img_height;
+        document.body.appendChild(bubble);
+
         setTimeout(function() {
-            remove_bubble(bubble);
-        }, 2000)
+            bubble.parentNode.removeChild(bubble);
+        }, 2000);
+    }else{
+        var newImage = document.createElement("img");
+        newImage.setAttribute('src', 'static/images/' + user + '.jpg');
+        newImage.setAttribute('class', 'overlays  img-circle');
+        newImage.style.left = l + "px";
+        newImage.style.top = t + "px";
+        newImage.height = img_height;
+        document.body.appendChild(newImage);
     }
-    firstTime = false;
-
-    var newImage = document.createElement("img");
-    newImage.setAttribute('src', 'static/images/' + user + '.jpg');
-    newImage.setAttribute('class', 'overlays  img-circle');
-    newImage.style.left = l + "px";
-    newImage.style.top = t + "px";
-    newImage.height = img_height;
-    document.body.appendChild(newImage);
+    firstTime[id] = false;
 }
 
-function show_bubble(pos, l, t) {
-
-    l += 10;
-    t += 10;
-    var img_height = 40;
-    var newImage = document.createElement("img");
-    newImage.setAttribute('src', 'static/images/bubble.png');
-    newImage.setAttribute('class', 'overlays  img-circle');
-    newImage.style.left = l + "px";
-    newImage.style.top = t + "px";
-    newImage.height = img_height;
-    document.body.appendChild(newImage);
-    return newImage;
-}
-
-function remove_bubble(img) {
-    img.clear();
-}
 function showImage(pos, user) {
 
     var users = ['rui', 'hugo', 'herlander', 'roger', 'david', 'nobody'];
