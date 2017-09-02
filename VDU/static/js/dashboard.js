@@ -14,7 +14,7 @@ $(document).ready(function () {
                 console.log(message);
                 if (message.value) {
                     console.log("set" + message.value);
-                    vdu_setRoute(message.value);
+                    vdu_setRoute(message.value.map(Number));
                 }
                 if (message.state) {
                     console.log("get" + message.value);
@@ -39,38 +39,57 @@ $(document).ready(function () {
             case 'vdu/car_seats/in':
                 break;
             case 'vdu/kms_display/in':
-                vdu_kmh(message.value);
+                vdu_kmh(parseInt(message.value));
                 break;
             case 'vdu/radio/in':
-                vdu_spotify(message.value);
+                vdu_spotify(parseInt(message.value));
                 vdu_nextSong();
                 break;
             case 'vdu/temperature/in':
-                vdu_tempMod(message.value);
+                vdu_tempMod(parseInt(message.value));
                 break;
             case 'vdu/power/in':
-                vdu_power(message.value);
+                vdu_power(parseInt(message.value));
                 break;
             case 'vdu/alerts/in':
                 document.getElementById("event").innerHTML = message.value;
                 break;
             case 'vdu/rpm_display/in':
-                vdu_rpm(message.value);
+                vdu_rpm(parseInt(message.value));
                 break;
             case 'vdu/volume/in':
-                vdu_volume(message.value);
+                vdu_volume(parseInt(message.value));
                 break;
             case 'scu/temperature/out':
                 if(message.success=="true")
                     vdu_tempScu(message.value)
                 break;
-            case 'vdu/scenario/in':
+            case 'vdu/scenario/activate/in':
                 switch(message.value){
-                    case "familyweekDay":
+                    case "family week day":
+                        document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" activated";
                         break;
-                    case "familynonweekDay":
+                    case "family non week day":
+                        document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" activated";
                         break;
-                    case "freestyle":
+                    case "free style":
+                        document.getElementById("event").innerHTML = "Scenario \"Free Style\" activated";
+                        break;
+                    default:
+                        console.log("Ignored scenario: "+message.value)
+                        break;
+                }
+                break;
+            case 'vdu/scenario/selection/in':
+                switch(message.value){
+                    case "family week day":
+                        document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" selected";
+                        break;
+                    case "family non week day":
+                        document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" selected";
+                        break;
+                    case "free style":
+                        document.getElementById("event").innerHTML = "Scenario \"Free Style\" selected";
                         break;
                     default:
                         console.log("Ignored scenario: "+message.value)
