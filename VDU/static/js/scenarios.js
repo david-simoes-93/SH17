@@ -1,7 +1,17 @@
 
+function activate_scenario(scenario) {
+    console.log("cenas1: " + scenario);
+
+}
+
+function reset_scenarios_btns() {
+    $('#scenario1_btn').removeClass('active');
+    $('#scenario2_btn').removeClass('active');
+    $('#scenario3_btn').removeClass('active');
+}
+
 
 $(document).ready(function () {
-
     client.on('message', function (topic, message) {
 
         message = JSON.parse(message);
@@ -27,15 +37,18 @@ $(document).ready(function () {
                 }
                 break;
             case 'vdu/scenario/selection/in':
+                reset_scenarios_btns();
                 switch(message.value){
                     case "family week day":
-                        select_scenario('family');
+                        $('#scenario1_btn').addClass('active');
                         document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" selected";
                         break;
                     case "family non week day":
+                        $('#scenario2_btn').addClass('active');
                         document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" selected";
                         break;
                     case "free style":
+                        $('#scenario3_btn').addClass('active');
                         document.getElementById("event").innerHTML = "Scenario \"Free Style\" selected";
                         break;
                     default:
@@ -51,11 +64,3 @@ $(document).ready(function () {
     });
 });
 
-
-function activate_scenario(scenario) {
-    console.log("cenas1: " + scenario);
-}
-
-function select_scenario(scenario) {
-console.log("cenas2: " + scenario);
-}
