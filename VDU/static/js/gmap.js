@@ -102,9 +102,14 @@ function vdu_startRoute(){
     driving = true;
 }
 
+function vdu_nextWaypointRoute(){
+    path_index = 100; //index of 1st waypoint
+    driving = false;
+}
+
 // skip to 90% of path
 function vdu_fastForwardRoute(){
-    path_index = Math.round(path_points.length*0.9);
+    path_index = path_points.length-10;
 }
 
 function vdu_endRoute(){

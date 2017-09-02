@@ -108,7 +108,9 @@ $(document).ready(function () {
                         vdu_nextSong();
                         break;
                     case "SwipeLeft":
-                        vdu_prevSong();
+                        // special interaction for demo
+                        vdu_nextWaypointRoute();
+                        //vdu_prevSong();
                         break;
                     default:
                         console.log("Ignored HOVER: "+message.action)

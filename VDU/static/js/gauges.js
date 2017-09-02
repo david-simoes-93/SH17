@@ -1,11 +1,15 @@
-/************************ Gauge Kms ************/
+var speedMinValue = 0;
+var speedMaxValue = 220;
+var rpmMinValue = 0;
+var rpmMaxValue = 6000;
+
 var gauge = new RadialGauge({
     renderTo: 'canvas-id',
     width: 300,
     height: 300,
     units: "Km/h",
-    minValue: 0,
-    maxValue: 220,
+    minValue: speedMinValue,
+    maxValue: speedMaxValue,
     majorTicks: [
         "0",
         "20",
@@ -39,15 +43,16 @@ var gauge = new RadialGauge({
     needleCircleInner: false,
     animationDuration: 1500,
     animationRule: "linear"
-}).draw();
+});
+gauge.draw();
 
 var gaugeRPM = new RadialGauge({
     renderTo: 'canvas-id-rpm',
     width: 300,
     height: 300,
     units: "RPM",
-    minValue: 0,
-    maxValue: 6000,
+    minValue: rpmMinValue,
+    maxValue: rpmMaxValue,
     majorTicks: [
         "0",
         "1000",
@@ -76,17 +81,18 @@ var gaugeRPM = new RadialGauge({
     needleCircleInner: false,
     animationDuration: 1500,
     animationRule: "linear"
-}).draw();
+});
+gaugeRPM.draw();
 
 function vdu_kmh(spd){
-    if(spd>=gauge.minValue && spd<=gauge.maxValue)
+    if(spd>=speedMinValue && spd<=speedMaxValue) {
         gauge.value = spd;
-    else
+    }else
         gauge.value = getRandomInt(50, 120);
 }
 
 function vdu_rpm(spd){
-    if(spd>=gaugeRPM.minValue && spd<=gaugeRPM.maxValue)
+    if(spd>=rpmMinValue && spd<=rpmMaxValue)
         gaugeRPM.value = spd;
     else
         gaugeRPM.value = getRandomInt(2000, 4000);
