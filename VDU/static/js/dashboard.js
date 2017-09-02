@@ -1,9 +1,29 @@
 var SW;
 
-function stop_siri(){
-    //SW.amplitude = 0;
-    //SW.speed = 0;
+function getIdFromName(name){
+    var names = ['rui', 'hugo', 'herlander', 'roger', 'david'];
 
+    return names.indexOf(name);
+}
+
+function getIdFromUID(uid){
+    switch(uid){
+        case "7a0dc528-bccc-47e3-b654-2f8382013708": // ROGER
+            return 3;
+        case "c9584522-1f3b-4600-bddc-e6bbb8f7abcc": // DAVID
+            return 4;
+        case "bdf14fa2-2dbe-43be-8141-0aec192c5693": // HERLANDER
+            return 2;
+        case "32499704-f81a-4290-a82c-70bcf398277a": // HUGO
+            return 1;
+        case "f50f40e9-da68-4359-a8c5-a758b65f26db": // RUI
+            return 0;
+        default:
+            return -1;
+    }
+}
+
+function stop_siri(){
     SW.cache.interpolation = {
         speed: 0,
         amplitude: 0
@@ -12,9 +32,6 @@ function stop_siri(){
 
 function vdu_displayAlert(msg){
     document.getElementById("event").innerHTML = msg;
-
-    //SW.amplitude=1;
-    //SW.speed = 0.12;
 
     SW.cache.interpolation = {
         speed: 0.12,
@@ -57,16 +74,17 @@ $(document).ready(function () {
                     }
                 }
                 break;
-            case 'vdu/car_top/in':
-                break;
-            case 'vdu/car_seats/in':
-                vdu_setPersonInSeat(message.value[0],parseInt(message.value[1]))
+            case 'lcu/seatposition/out':
+                if(message.result.profileId!="") {
+                    var id = getIdFromUID(message.result.profileId);
+                    vdu_setPersonInSeat(message.result.lastSeatPosition, id);
+                }
                 break;
             case 'vdu/kms_display/in':
                 vdu_kmh(parseInt(message.value));
                 break;
             case 'vdu/radio/in':
-                vdu_spotify(parseInt(message.value));
+                vdu_spotify(getIdFromUID(message.value));
                 vdu_nextSong();
                 break;
             case 'vdu/temperature/in':
@@ -88,7 +106,6 @@ $(document).ready(function () {
                 if(message.success=="true")
                     vdu_tempScu(message.value);
                 break;
-
             case 'gcu/gesture/out':
                 switch(message.action){
                     case "AirspinRight":
@@ -114,8 +131,6 @@ $(document).ready(function () {
                 console.log("Unknown topic: " + message.toString(), topic);
                 break;
         }
-
-        //client.end()
     });
 
 

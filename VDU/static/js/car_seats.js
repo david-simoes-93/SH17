@@ -9,7 +9,7 @@ $(function() {
 });
 
 function vdu_setPersonInSeat(seat, id){
-    if(id>4)
+    if(id>4 || id<0)
         id=5;
 
     var users = ['rui', 'hugo', 'herlander', 'roger', 'david', 'nobody'];
