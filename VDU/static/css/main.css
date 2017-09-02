@@ -35,7 +35,7 @@
 
 /******************/
 .car_seats_div {
-    margin-top: 110px;
+    margin-top: 0px;
 }
 
 .gauges_div {
@@ -56,6 +56,24 @@
 
 }
 
+.canvas_kms {
+    margin-left: -100px;
+
+}
+.loader_bottom {
+    margin-top: 40px;
+    margin-left: -50px;
+}
+.loader_bottom2 {
+    margin-top: 40px;
+    margin-left: 40px;
+}
+.canvas_middle_km {
+    margin-right: 10px;
+}
+.vehicle_setting {
+    margin-top: 140px;
+}
 #event {
     font-size: 25px;
 }

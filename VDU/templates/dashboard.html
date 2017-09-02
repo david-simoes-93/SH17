@@ -8,8 +8,8 @@
         <div class="col-lg-2 col-md-2">
             <div id="siri-container"></div>
 <!--                <img src="static/images/listening.png" height="80px;"/>-->
-            <div id="siri-container-listening" style="display:none;">
-                <img src="static/images/redCircle.png" height="100" width="133">
+            <div id="siri-container-listening" class="text-right" style="display: none; margin-right: -80px;">
+                <img src="static/images/listening.png" height="75">
 
             </div>
         </div>
@@ -24,36 +24,39 @@
         </div>
     </div>
 
-    <div class="row car_seats_div">
-        <img id="car-occupation-img" src="static/images/car_seats_blue.jpg" width="730" height="350">
-    </div>
-
-    <div class="row gauges_div">
-        <div class="col-lg-3 col-md-3">
-            <canvas id="canvas-id"></canvas>
-        </div>
-        <div class="col-lg-3 col-md-3">
-            <canvas id="canvas-id-rpm"></canvas>
-        </div>
-        <div class="col-lg-3 col-md-3">
-            <div class="loader">
-                <div id="battery1" class="perc green2"></div>
-                <div id="battery2" class="perc green1"></div>
-                <div id="battery3" class="perc green0"></div>
-                <div id="battery4" class="perc red2"></div>
-                <div id="battery5" class="perc red1"></div>
-                <div id="battery6" class="perc red0"></div>
+    <div class="row vehicle_setting">
+        <div class="col-lg-6 col-md-6">
+            <div class="car_seats_div">
+                <img id="car-occupation-img" src="static/images/car_seats_blue.jpg" height="550" width="310">
             </div>
         </div>
-        <div class="col-lg-3 col-md-3">
-            <div id="container-temperature"></div>
+        <div class="col-lg-6 col-md-6" style="margin-top: 25px;">
+                <div class="col-lg-6 col-md-6">
+                    <canvas id="canvas-id"></canvas>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <canvas id="canvas-id-rpm"></canvas>
+                </div>
+                <div class="col-lg-6 col-md-6 loader_bottom">
+                    <div class="loader">
+                        <div id="battery1" class="perc green2"></div>
+                        <div id="battery2" class="perc green1"></div>
+                        <div id="battery3" class="perc green0"></div>
+                        <div id="battery4" class="perc red2"></div>
+                        <div id="battery5" class="perc red1"></div>
+                        <div id="battery6" class="perc red0"></div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 loader_bottom2">
+                    <div id="container-temperature"></div>
 
-        </div>
+                </div>
+            </div>
     </div>
 
     <div class="row media_div">
         <div class="col-lg-offset-1 col-md-offset-1 col-lg-4 col-md-4">
-            <div class="knob-surround" style="margin-top:90px; height: 150px; width: 150px;">
+            <div class="knob-surround" style="margin-top:0px; height: 150px; width: 150px;">
 
                 <div class="knob"></div>
                 <span class="min">Min</span>
@@ -91,7 +94,7 @@
             </div>
         </div>
         <div class="col-lg-offset-1 col-md-offset-1 col-lg-5 col-md-5">
-            <div id="spotify" style="margin-top: 120px;">
+            <div id="spotify" style="margin-top: 25px;">
                 <iframe src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" height="270" width="450" frameborder="0" allowtransparency="true"></iframe>
             </div>
         </div>
