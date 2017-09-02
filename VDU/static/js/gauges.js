@@ -105,14 +105,15 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-/*
+
 // Bring life to the dials
 setInterval(function () {
     // Speed
-    newVal = getRandomInt(50, 120);
-    gauge.value = newVal;
+    if(gauge.value>speedMinValue+10 && gaugle.value<speedMaxValue-10){
+        gauge.value = gauge.value + getRandomInt(-10, 10);
+    }
 
-    newVal2 = getRandomInt(2000, 4000);
-    gaugeRPM.value = newVal2;
+    if(gaugeRPM.value>rpmMinValue+200 && gaugeRPM.value<rpmMaxValue-200){
+        gaugeRPM.value = gaugeRPM.value + getRandomInt(-200, 200);
+    }
 }, 2000);
-*/
