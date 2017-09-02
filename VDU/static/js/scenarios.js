@@ -1,7 +1,8 @@
 
-function activate_scenario(scenario) {
-    console.log("cenas1: " + scenario);
-
+function activate_scenario() {
+    console.log("cenarios ativo - redirecionar ");
+    //TODO: loading spinner
+    window.location = "/dashboard";
 }
 
 function reset_scenarios_btns() {
@@ -20,21 +21,7 @@ $(document).ready(function () {
 
         switch (topic) {
             case 'vdu/scenario/activate/in':
-                switch(message.value){
-                    case "family week day":
-                        activate_scenario('family');
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" activated";
-                        break;
-                    case "family non week day":
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" activated";
-                        break;
-                    case "free style":
-                        document.getElementById("event").innerHTML = "Scenario \"Free Style\" activated";
-                        break;
-                    default:
-                        console.log("Ignored scenario: "+message.value)
-                        break;
-                }
+                activate_scenario();
                 break;
             case 'vdu/scenario/selection/in':
                 reset_scenarios_btns();
