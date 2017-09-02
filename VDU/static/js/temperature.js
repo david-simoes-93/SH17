@@ -100,12 +100,23 @@ var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merg
 
 }));
 
+function update_temp(){
+    var tempVal = tempScu + tempMod;
+    if (tempVal >= chartTemperature.yAxis[0].min && tempVal <= chartTemperature.yAxis[0].max) {
+        // do nothing
+    }else
+        tempVal = getRandomInt(15, 30);
+    chartTemperature.series[0].points[0].update(tempVal);
+}
+
 function vdu_tempMod(tmp) {
     tempMod += tmp;
+    update_temp();
 }
 
 function vdu_tempScu(tmp) {
     tempScu = tmp;
+    update_temp();
 }
 
 function getRandomInt(min, max) {
@@ -113,15 +124,10 @@ function getRandomInt(min, max) {
 }
 
 setInterval(function () {
-    var tempVal = tempScu + tempMod;
-    if (tempVal >= chartTemperature.yAxis[0].min && tempVal <= chartTemperature.yAxis[0].max) {
-        // do nothing
-    }else
-        tempVal = getRandomInt(15, 30);
-    chartTemperature.series[0].points[0].update(tempVal);
-
     client.publish("scu/temperature/in", "{\"action\": \"read\"}");
-}, 5000);
+}, 60000);
+
+client.publish("scu/temperature/in", "{\"action\": \"read\"}");
 
 /*
 // Bring life to the dials

@@ -43,6 +43,7 @@ $(document).ready(function () {
                 break;
             case 'vdu/radio/in':
                 vdu_spotify(message.value);
+                vdu_nextSong();
                 break;
             case 'vdu/temperature/in':
                 vdu_tempMod(message.value);
@@ -62,6 +63,38 @@ $(document).ready(function () {
             case 'scu/temperature/out':
                 if(message.success=="true")
                     vdu_tempScu(message.value)
+                break;
+            case 'vdu/scenario/in':
+                switch(message.value){
+                    case "familyweekDay":
+                        break;
+                    case "familynonweekDay":
+                        break;
+                    case "freestyle":
+                        break;
+                    default:
+                        console.log("Ignored scenario: "+message.value)
+                        break;
+                }
+                break;
+            case 'gcu/gesture/out':
+                switch(message.action){
+                    case "AirspinRight":
+                        vdu_volume(10);
+                        break;
+                    case "AirspinLeft":
+                        vdu_volume(-10);
+                        break;
+                    case "SwipeRight":
+                        vdu_nextSong();
+                        break;
+                    case "SwipeLeft":
+                        vdu_prevSong();
+                        break;
+                    default:
+                        console.log("Ignored HOVER: "+message.action)
+                        break;
+                }
                 break;
             default:
                 console.log("Unknown topic: " + message.toString(), topic);

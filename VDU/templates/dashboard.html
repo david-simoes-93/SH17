@@ -73,6 +73,14 @@
             NOTIFICATIONS
         </div>
         <div id="event">...</div>
+
+        <div id="songs" class="col-lg-12 col-md-12" style="display: none;">
+            Songs
+            <audio controls id="songs_control" volume=0.5>
+                <source id="songs_src" src="static/media/lucky.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
     </div>
 
     <div class="knob-surround">
@@ -118,6 +126,7 @@
     <script src="static/js/gmap.js"></script>
 
     <script src="static/js/spotify.js"></script>
+    <script src="static/js/songs.js"></script>
 
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts-more.js"></script>
@@ -133,6 +142,7 @@
 
     <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
     <script src="static/js/volume.js"></script>
+
 
     <script src="static/js/dashboard.js"></script>
 
