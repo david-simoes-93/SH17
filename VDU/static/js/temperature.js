@@ -3,7 +3,7 @@ var gaugeOptions = {
 
     chart: {
         type: 'solidgauge',
-        marginTop: 20
+        marginTop: 0
     },
 
     title: null,
@@ -18,7 +18,7 @@ var gaugeOptions = {
             borderWidth: 0,
             shape: 'arc'
         }],
-        size: '120%',
+        size: '100%',
         center: ['50%', '70%']
     }],
 
@@ -57,10 +57,13 @@ var tempScu = 20;
 // The Temperature gauge
 var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merge(gaugeOptions, {
     title: {
-        text: 'A/C Temperature',
-        y: 20
+        text: null
     },
-
+    chart: {
+        height: 200,
+        width: 200,
+        backgroundColor: '#ccc'
+    },
     yAxis: [{
         min: 14,
         max: 31,
@@ -86,12 +89,12 @@ var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merg
     series: [{
         animation: true,
         dataLabels: {
-            format: '<div style="text-align:center"><span style="font-size:50px;color:' +
+            format: '<div style="text-align:center"><span style="font-size:30px;color:' +
             ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-            '<span style="font-size:22px;color:silver">ºC</span></div>'
+            '<span style="font-size:15px;color:silver">ºC</span></div>'
         },
         borderWidth: 0,
-        color: Highcharts.getOptions().colors[0],
+        color: '#ggg',
         data: [rawData],
         tooltip: {
             valueSuffix: ' ºC'

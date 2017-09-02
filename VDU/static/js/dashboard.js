@@ -96,8 +96,8 @@ $(document).ready(function () {
 
 
     var SW = new SiriWave({
-        width: 400,
-        height: 100,
+        width: 250,
+        height: 80,
         speed: 0.12,
         amplitude: 1,
         container: document.getElementById('siri-container'),

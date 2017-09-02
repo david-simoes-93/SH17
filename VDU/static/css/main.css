@@ -39,8 +39,15 @@
 }
 
 .gauges_div {
-    margin-top: 10px;
-    height: 40px;
+    margin: 20px;
+    height: 100px;
+}
+
+.media_div {
+    margin-top: 100px;
+}
+
+.spotify {
 }
 
 /**************** BATTERY ****************/

@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 {% block body %}
 
-    <div class="row">
-        <div class="col-lg-6 col-md-6">
-            <h2 id="event" >Welcome!</h2>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-lg-8 col-md-8">
+            <h2 id="event" >2017: Odisseia in Costa Nova</h2>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-4 col-md-4">
             <div id="siri-container"></div>
         </div>
     </div>
@@ -21,105 +21,86 @@
 
     <div class="row car_seats_div">
         <img id="car-occupation-img" src="static/images/car_seats_blue.jpg" width="730" height="350">
-        <!--
-        <div id="car_seats"></div>
-        <div class="col-lg-6 col-md-6">
-            <label for="car-seats">How many seats are occupied?</label>
-            <select id="car-seats">
-                <option value="none">-- Escolher --</option>
-                <option value="front_left">front_left</option>
-                <option value="front_right">front_right</option>
-                <option value="back_left">back_left</option>
-                <option value="back_right">back_right</option>
-                <option value="back_center">back_center</option>
-            </select>
-
-        </div>
-        -->
-
     </div>
 
-        <div class="row gauges_div">
-            <div class="col-lg-3 col-md-3">
-                <canvas id="canvas-id"></canvas>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <canvas id="canvas-id-rpm"></canvas>
-            </div>
-            <div class="col-lg-3 col-md-3">
-                <div id="container-temperature">
+    <div class="row gauges_div">
+        <div class="col-lg-3 col-md-3">
+            <canvas id="canvas-id"></canvas>
+        </div>
+        <div class="col-lg-3 col-md-3">
+            <canvas id="canvas-id-rpm"></canvas>
+        </div>
+        <div class="col-lg-3 col-md-3">
+            <div class="loader">
+                <div id="battery1" class="perc green2"></div>
+                <div id="battery2" class="perc green1"></div>
+                <div id="battery3" class="perc green0"></div>
+                <div id="battery4" class="perc red2"></div>
+                <div id="battery5" class="perc red1"></div>
+                <div id="battery6" class="perc red0"></div>
             </div>
         </div>
-        <div class="row col-lg-12 col-md-12">
-            <div id="spotify" class="col-lg-6 col-md-6">
-                <iframe src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+        <div class="col-lg-3 col-md-3">
+            <div id="container-temperature"></div>
+
+        </div>
+    </div>
+
+    <div class="row media_div">
+        <div class="col-lg-6 col-md-6">
+            <div id="spotify">
+                <iframe src="https://open.spotify.com/embed?uri=spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf" height="350" width="300" frameborder="0" allowtransparency="true"></iframe>
             </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+            <div class="knob-surround">
 
-
-            </div>
-
-            <div class="col-lg-3 col-md-3">
-                <h1>CAR POWER</h1>
-                <div class="loader">
-                    <div id="battery1" class="perc green2"></div>
-                    <div id="battery2" class="perc green1"></div>
-                    <div id="battery3" class="perc green0"></div>
-                    <div id="battery4" class="perc red2"></div>
-                    <div id="battery5" class="perc red1"></div>
-                    <div id="battery6" class="perc red0"></div>
+                <div class="knob"></div>
+                <span class="min">Min</span>
+                <span class="max">Max</span>
+                <div class="ticks">
+                    <div class="tick activetick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
+                    <div class="tick"></div>
                 </div>
             </div>
         </div>
-
-
-
-        <div id="songs" class="col-lg-12 col-md-12" style="display: none;">
-            Songs
-            <audio controls id="songs_control" volume=0.5>
-                <source id="songs_src" src="static/media/lucky.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
     </div>
 
-    <div class="knob-surround">
-
-        <div class="knob"></div>
-
-        <span class="min">Min</span>
-        <span class="max">Max</span>
-
-        <div class="ticks">
-            <div class="tick activetick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-            <div class="tick"></div>
-        </div>
+    <div id="songs" style="display: none;">
+        Songs
+        <audio controls id="songs_control" volume=0.5>
+            <source id="songs_src" src="static/media/lucky.mp3" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
     </div>
+
+
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBDr1IfIv_-9ogb6S_5KXP6ge-7yK6B_9A"></script>
     <script src="static/js/gmap.js"></script>
