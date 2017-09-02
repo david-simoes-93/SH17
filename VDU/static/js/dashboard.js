@@ -101,6 +101,16 @@ $(document).ready(function () {
             case 'vdu/power/in':
                 vdu_power(parseInt(message.value));
                 break;
+            case 'vdu/listening/in':
+                if(message.value=="1"){
+                    //alert("lol");
+                    document.getElementById("siri-container-listening").style.display = "block";
+                    document.getElementById("siri-container").style.display = "none";
+                }else{
+                    document.getElementById("siri-container-listening").style.display = "none";
+                    document.getElementById("siri-container").style.display = "block";
+                }
+                break;
             case 'vdu/alerts/in':
                 vdu_displayAlert(message.value);
                 break;
