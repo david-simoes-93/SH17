@@ -107,16 +107,17 @@ h1 {
 }
 
 .div_map {
-    margin-top:180px;
+    margin-top:160px;
 }
 
 .div_seats {
-    margin-top:500px;
+    margin-top:750px;
 }
 
 body {
-    background-color: black;
+    background-color: white;
     background-image: url("../images/bg.png");
+    background-repeat: no-repeat;
 }
 
 .red0 {
