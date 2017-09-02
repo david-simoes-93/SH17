@@ -14,4 +14,14 @@ $(document).ready(function() {
         $('#component_result').html(result);
     });
 
+    $('#component_btn2').on('click', function () {
+        /********* MQTT **************/
+        var msg = $('#message_msg').val();
+        var topic = $('#topic_msg').val();
+        if (msg && topic) {
+            client.publish(topic, msg);
+        }
+        console.log(result);
+        $('#component_result').html(result);
+    });
 });

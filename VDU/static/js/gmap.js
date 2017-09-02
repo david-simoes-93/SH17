@@ -139,11 +139,13 @@ function vdu_nextWaypointRoute() {
     }
 
     driving = false;
+    placeMarker();
 }
 
 // skip to 90% of path
 function vdu_fastForwardRoute() {
     path_index = path_points.length - 10;
+    placeMarker();
 }
 
 function vdu_endRoute() {
@@ -174,40 +176,44 @@ setInterval(function () {
 }, 10000);
 */
 
+function placeMarker(){
+    if (marker != null)
+        marker.setMap(null);
+    marker = new google.maps.Marker({
+        position: path_points[path_index],
+        map: myMap
+    });
+    myMap.setCenter(path_points[path_index]);
+    myMap.setZoom(16);
+    myMap.setMapTypeId('satellite');
+
+    sv.getPanorama({location: path_points[path_index], radius: 50}, processSVData);
+
+    if (path_index + 1 < path_points.length) {
+        var p1 = {
+            x: path_points[path_index].lng(),
+            y: path_points[path_index].lat()
+        };
+        var p2 = {
+            x: path_points[path_index + 1].lng(),
+            y: path_points[path_index + 1].lat()
+        };
+
+
+        var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI; // in geometric circle
+        angleDeg = 90 - angleDeg; // in google coords
+        myPano.setPov({
+            heading: angleDeg,
+            pitch: 0
+        });
+    }
+
+    path_index++;
+}
+
 setInterval(function () {
     if (driving && path_index < path_points.length) {
-        if (marker != null)
-            marker.setMap(null);
-        marker = new google.maps.Marker({
-            position: path_points[path_index],
-            map: myMap
-        });
-        myMap.setCenter(path_points[path_index]);
-        myMap.setZoom(16);
-        myMap.setMapTypeId('satellite');
-
-        sv.getPanorama({location: path_points[path_index], radius: 50}, processSVData);
-
-        if (path_index + 1 < path_points.length) {
-            var p1 = {
-                x: path_points[path_index].lng(),
-                y: path_points[path_index].lat()
-            };
-            var p2 = {
-                x: path_points[path_index + 1].lng(),
-                y: path_points[path_index + 1].lat()
-            };
-
-
-            var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI; // in geometric circle
-            angleDeg = 90 - angleDeg; // in google coords
-            myPano.setPov({
-                heading: angleDeg,
-                pitch: 0
-            });
-        }
-
-        path_index++;
+        placeMarker();
     }
 }, 2000);
 
