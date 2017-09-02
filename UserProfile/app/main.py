@@ -29,7 +29,7 @@ TOPIC_IN = 'upcu/profile/in'
 TOPIC_OUT = 'upcu/profile/out'
 
 mqtt.subscribe(TOPIC_IN)
-mqtt.subscribe(TOPIC_OUT)
+#mqtt.subscribe(TOPIC_OUT)
 
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
@@ -141,7 +141,7 @@ def create_profile(data):
 class Profile(db.Model):
     id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String(20))
-    image = db.Column(db.LargeBinary)
+    image = db.Column(db.String(50))
     spotify_id = db.Column(db.Integer)
 
     def __init__(self, id, name, image, spotify_id):
@@ -154,7 +154,6 @@ class Profile(db.Model):
         result = {}
         if self.id:
             result = { c.name: getattr(self, c.name) for c in self.__table__.columns }
-            if result['image']: result['image'] = ""
         return result
 
 #############################################
