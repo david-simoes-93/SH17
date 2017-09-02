@@ -98,6 +98,27 @@
     margin-left:3px;
 }
 
+h2 {
+    color:powderblue
+}
+
+h1 {
+    color:powderblue
+}
+
+.div_map {
+    margin-top:180px;
+}
+
+.div_seats {
+    margin-top:500px;
+}
+
+body {
+    background-color: black;
+    background-image: url("../images/bg.png");
+}
+
 .red0 {
     background-color:#ed1b1e;
 }

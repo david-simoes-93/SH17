@@ -3,7 +3,6 @@ var knob = $('.knob');
 var angle = 135;
 var minangle = 0;
 var maxangle = 270;
-var mod = 0;
 
 function setAngle() {
 
@@ -23,15 +22,15 @@ function setAngle() {
     $('.tick').slice(0,activeTicks).addClass('activetick');
 
     // update % value in text
-    var pc = Math.round((angle/270)*100);
+    var pc = Math.round((angle/maxangle)*100);
     $('.current-value').text(pc+'%');
 
 }
 
 function vdu_volume(mod){
     angle = angle + mod;
-    if(angle>270) angle=270;
-    if(angle<0) angle=0;
+    if(angle>maxangle) angle=maxangle;
+    if(angle<minangle) angle=minangle;
 
     setAngle();
     document.getElementById("songs_control").volume = angle/270;
