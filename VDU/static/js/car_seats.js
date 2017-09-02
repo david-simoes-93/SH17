@@ -8,7 +8,72 @@ $(function() {
 
 });
 
+function vdu_setPersonInSeat(seat, id){
+    if(id>4)
+        id=5;
 
+    var users = ['rui', 'hugo', 'herlander', 'roger', 'david', 'nobody'];
+    var user = users[id];
+
+    var img_height;
+    var w_weight, h_weight;
+    switch(seat) {
+        case 'front_left':
+            img_height = 90;
+            w_weight = 0.42;
+            h_weight = 0.60;
+            break;
+        case 'front_right':
+            img_height = 90;
+            w_weight = 0.42;
+            h_weight = 0.20;
+            break;
+        case 'back_left':
+            img_height = 75;
+            w_weight = 0.62;
+            h_weight = 0.62;
+            break;
+        case 'back_right':
+            img_height = 75;
+            w_weight = 0.62;
+            h_weight = 0.18;
+            break;
+        case 'back_center':
+            img_height = 75;
+            w_weight = 0.62;
+            h_weight = 0.40;
+            break;
+        default:
+            w_weight = 0;
+            h_weight = 0;
+    }
+
+    var image = document.getElementById('car-occupation-img');
+    margin = 10;
+
+    l = image.offsetLeft;
+    t = image.offsetTop;
+    w = image.width;
+    h = image.height;
+
+    // Location inside the image
+    offX = parseInt(w_weight * w);
+    offY = parseInt(h_weight * h);
+
+    if(offX > margin) offX -= margin;
+    if(offY > margin) offY -= margin;
+
+    l += offX;
+    t += offY;
+
+    var newImage = document.createElement("img");
+    newImage.setAttribute('src', 'static/images/' + user + '.png');
+    newImage.setAttribute('class', 'overlays');
+    newImage.style.left = l + "px";
+    newImage.style.top = t + "px";
+    newImage.height = img_height;
+    document.body.appendChild(newImage);
+}
 
 function showImage(pos, user) {
 
@@ -80,10 +145,8 @@ function showImage(pos, user) {
     newImage.setAttribute('class', 'overlays');
     newImage.style.left = l + "px";
     newImage.style.top = t + "px";
-    //newImage.width = 115;
+
     newImage.height = img_height;
     document.body.appendChild(newImage);
-    //$("#car_seats").html(newImage);
-
 }
 

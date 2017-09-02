@@ -1,3 +1,29 @@
+var SW;
+
+function stop_siri(){
+    //SW.amplitude = 0;
+    //SW.speed = 0;
+
+    SW.cache.interpolation = {
+        speed: 0,
+        amplitude: 0
+    };
+}
+
+function vdu_displayAlert(msg){
+    document.getElementById("event").innerHTML = msg;
+
+    //SW.amplitude=1;
+    //SW.speed = 0.12;
+
+    SW.cache.interpolation = {
+        speed: 0.12,
+        amplitude: 1
+    };
+
+    setTimeout(stop_siri, 100*msg.length);
+}
+
 /**************** *********************/
 $(document).ready(function () {
     var eventOutputContainer = document.getElementById("event");
@@ -11,13 +37,10 @@ $(document).ready(function () {
         message = JSON.parse(message);
         switch (topic) {
             case 'vdu/gps_maps/in':
-                console.log(message);
                 if (message.value) {
-                    console.log("set" + message.value);
                     vdu_setRoute(message.value.map(Number));
                 }
                 if (message.state) {
-                    console.log("get" + message.value);
                     switch (message.state) {
                         case 'start':
                             vdu_startRoute();
@@ -37,6 +60,7 @@ $(document).ready(function () {
             case 'vdu/car_top/in':
                 break;
             case 'vdu/car_seats/in':
+                vdu_setPersonInSeat(message.value[0],parseInt(message.value[1]))
                 break;
             case 'vdu/kms_display/in':
                 vdu_kmh(parseInt(message.value));
@@ -52,7 +76,7 @@ $(document).ready(function () {
                 vdu_power(parseInt(message.value));
                 break;
             case 'vdu/alerts/in':
-                document.getElementById("event").innerHTML = message.value;
+                vdu_displayAlert(message.value);
                 break;
             case 'vdu/rpm_display/in':
                 vdu_rpm(parseInt(message.value));
@@ -95,11 +119,11 @@ $(document).ready(function () {
     });
 
 
-    var SW = new SiriWave({
+    SW = new SiriWave({
         width: 400,
         height: 100,
         speed: 0.12,
-        amplitude: 1,
+        amplitude: 0,
         container: document.getElementById('siri-container'),
         autostart: true
     });
