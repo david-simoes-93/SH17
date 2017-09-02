@@ -6,7 +6,7 @@ $(document).ready(function () {
         // message is Buffer
 
         //eventOutputContainer.innerHTML = message.toString();
-        console.log(message.toString(), topic)
+        console.log(message.toString(), topic);
 
         message = JSON.parse(message);
         switch (topic) {
@@ -62,40 +62,9 @@ $(document).ready(function () {
                 break;
             case 'scu/temperature/out':
                 if(message.success=="true")
-                    vdu_tempScu(message.value)
+                    vdu_tempScu(message.value);
                 break;
-            case 'vdu/scenario/activate/in':
-                switch(message.value){
-                    case "family week day":
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" activated";
-                        break;
-                    case "family non week day":
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" activated";
-                        break;
-                    case "free style":
-                        document.getElementById("event").innerHTML = "Scenario \"Free Style\" activated";
-                        break;
-                    default:
-                        console.log("Ignored scenario: "+message.value)
-                        break;
-                }
-                break;
-            case 'vdu/scenario/selection/in':
-                switch(message.value){
-                    case "family week day":
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Week Day\" selected";
-                        break;
-                    case "family non week day":
-                        document.getElementById("event").innerHTML = "Scenario \"Family @ Weekend\" selected";
-                        break;
-                    case "free style":
-                        document.getElementById("event").innerHTML = "Scenario \"Free Style\" selected";
-                        break;
-                    default:
-                        console.log("Ignored scenario: "+message.value)
-                        break;
-                }
-                break;
+
             case 'gcu/gesture/out':
                 switch(message.action){
                     case "AirspinRight":
@@ -125,20 +94,15 @@ $(document).ready(function () {
         //client.end()
     });
 
-    /********* EventSource **************/
-    /*
-    var source = new EventSource("{{ url_for('sse.stream') }}");
-    source.addEventListener('greeting', function(event) {
-            var data = JSON.parse(event.data);
-            //alert("The server says " + data.message);
-            eventOutputContainer.innerHTML = data.message;
-        }, false);
-        source.addEventListener('error', function(event) {
-            var msg = "Failed to connect to event stream. Is Redis running?";
-            console.log(msg);
-            eventOutputContainer.innerHTML = msg;
-    }, false);
-    */
 
-
+    var SW = new SiriWave({
+        width: 400,
+        height: 100,
+        speed: 0.12,
+        amplitude: 1,
+        container: document.getElementById('siri-container'),
+        autostart: true
+    });
 });
+
+

@@ -6,6 +6,10 @@
     margin: 20px 20px 20px;
 }
 
+.overlays{
+    position:absolute;
+}
+
 .wrap {
     width: 1060px;
     height:auto;
@@ -25,10 +29,19 @@
 
 /***************** MAP ********************/
 .map-navigation {
-    width:620px;
-    height:350px;
+    width:460px;
+    height:425px;
 }
 
+/******************/
+.car_seats_div {
+    margin-top: 110px;
+}
+
+.gauges_div {
+    margin-top: 10px;
+    height: 40px;
+}
 
 /**************** BATTERY ****************/
 
@@ -107,7 +120,7 @@ h1 {
 }
 
 .div_map {
-    margin-top:160px;
+    margin-top:130px;
 }
 
 .div_seats {
