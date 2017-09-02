@@ -101,6 +101,13 @@ $(document).ready(function () {
             case 'vdu/power/in':
                 vdu_power(parseInt(message.value));
                 break;
+            case 'vdu/listening/in':
+                if(message.value=="1"){
+
+                }else{
+
+                }
+                break;
             case 'vdu/alerts/in':
                 vdu_displayAlert(message.value);
                 break;
