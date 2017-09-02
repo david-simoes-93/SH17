@@ -18,27 +18,27 @@ function vdu_setPersonInSeat(seat, id){
     var img_height;
     var w_weight, h_weight;
     switch(seat) {
-        case 'front_left':
+        case 'FrontLeft':
             img_height = 90;
             w_weight = 0.42;
             h_weight = 0.60;
             break;
-        case 'front_right':
+        case 'FrontRight':
             img_height = 90;
             w_weight = 0.42;
             h_weight = 0.20;
             break;
-        case 'back_left':
+        case 'RearLeft':
             img_height = 75;
             w_weight = 0.62;
             h_weight = 0.62;
             break;
-        case 'back_right':
+        case 'RearRight':
             img_height = 75;
             w_weight = 0.62;
             h_weight = 0.18;
             break;
-        case 'back_center':
+        case 'RearCenter':
             img_height = 75;
             w_weight = 0.62;
             h_weight = 0.40;
