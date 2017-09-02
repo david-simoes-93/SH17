@@ -42,17 +42,19 @@ def handle_mqtt_message(client, userdata, message):
     payload = json.loads(data['payload'])
     action = get_action_from_request(payload)
 
-    print("PAYLOAD: " + str(payload))
+    #print("PAYLOAD: " + str(payload))
     print("ACTION: " + action)
 
     if action == 'get':
         user_id = payload['profile_id']
-        #print("USER_ID:" + str(user_id))
+        print("USER_ID:" + str(user_id))
         profile = get_profile(user_id)
         send_profile(json.dumps({ "status": "success", "profile": profile }))
-    else:
-        create_profile(payload)
+    elif action == 'create':
+        #create_profile(payload)
         print("===== PROFILE CREATED ======")
+    else:
+        return "cenas"
 
     return "message processed"
 
@@ -66,7 +68,7 @@ def get_action_from_request(payload):
         return payload['action']
     else:
         return 'none'
-    
+
 #################### TESTING ##################################
 @app.route('/teste')
 def index2():
@@ -152,7 +154,7 @@ class Profile(db.Model):
         result = {}
         if self.id:
             result = { c.name: getattr(self, c.name) for c in self.__table__.columns }
-            if result['image']: result['image'] = result['image'].decode("utf-8")
+            if result['image']: result['image'] = ""
         return result
 
 #############################################
