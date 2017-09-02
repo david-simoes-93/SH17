@@ -34,6 +34,7 @@ function vdu_volume(mod){
     if(angle<0) angle=0;
 
     setAngle();
+    document.getElementById("songs_control").volume = angle/270;
 }
 
 setAngle();
