@@ -8,6 +8,8 @@ $(function() {
 
 });
 
+var firstTime = false;
+
 function vdu_setPersonInSeat(seat, id){
     if(id>4 || id<0)
         id=5;
@@ -19,27 +21,27 @@ function vdu_setPersonInSeat(seat, id){
     var w_weight, h_weight;
     switch(seat) {
         case 'FrontLeft':
-            img_height = 90;
+            img_height = 80;
             w_weight = 0.42;
             h_weight = 0.60;
             break;
         case 'FrontRight':
-            img_height = 90;
+            img_height = 80;
             w_weight = 0.42;
             h_weight = 0.20;
             break;
         case 'RearLeft':
-            img_height = 75;
+            img_height = 65;
             w_weight = 0.62;
             h_weight = 0.62;
             break;
         case 'RearRight':
-            img_height = 75;
+            img_height = 65;
             w_weight = 0.62;
             h_weight = 0.18;
             break;
         case 'RearCenter':
-            img_height = 75;
+            img_height = 65;
             w_weight = 0.62;
             h_weight = 0.40;
             break;
@@ -67,8 +69,8 @@ function vdu_setPersonInSeat(seat, id){
     t += offY;
 
     var newImage = document.createElement("img");
-    newImage.setAttribute('src', 'static/images/' + user + '.png');
-    newImage.setAttribute('class', 'overlays');
+    newImage.setAttribute('src', 'static/images/' + user + '.jpg');
+    newImage.setAttribute('class', 'overlays  img-circle');
     newImage.style.left = l + "px";
     newImage.style.top = t + "px";
     newImage.height = img_height;
@@ -141,8 +143,8 @@ function showImage(pos, user) {
     console.log(offX, offY);
     console.log(w, h);
     var newImage = document.createElement("img");
-    newImage.setAttribute('src', 'static/images/' + user + '.png');
-    newImage.setAttribute('class', 'overlays');
+    newImage.setAttribute('src', 'static/images/' + user + '.jpg');
+    newImage.setAttribute('class', 'overlays img-circle');
     newImage.style.left = l + "px";
     newImage.style.top = t + "px";
 

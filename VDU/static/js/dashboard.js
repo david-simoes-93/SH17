@@ -135,12 +135,12 @@ $(document).ready(function () {
 
 
     SW = new SiriWave({
-            width: 250,
+            width: 190,
             height: 80,
-        speed: 0.12,
-        amplitude: 0,
-        container: document.getElementById('siri-container'),
-        autostart: true
+            speed: 0.12,
+            amplitude: 0,
+            container: document.getElementById('siri-container'),
+            autostart: true
     });
 });
 

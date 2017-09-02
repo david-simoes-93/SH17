@@ -44,13 +44,21 @@
 }
 
 .media_div {
-    margin-top: 150px;
+    margin-top: 120px;
 }
 
 .spotify {
-    margin-top: 150px;
+    margin-top: 180px;
 }
 
+.event-notifier {
+    margin-left: -50px;
+
+}
+
+#event {
+    font-size: 25px;
+}
 /**************** BATTERY ****************/
 
 
@@ -128,7 +136,7 @@ h1 {
 }
 
 .div_map {
-    margin-top:130px;
+    margin-top:230px;
 }
 
 .div_seats {
