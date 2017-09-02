@@ -75,7 +75,7 @@ $(document).ready(function () {
                 }
                 break;
             case 'lcu/seatposition/out':
-                if(message.result.profileId!="") {
+                if(message.result.profileId!="" && message.result.profileName!="") {
                     var id = getIdFromUID(message.result.profileId);
                     vdu_setPersonInSeat(message.result.lastSeatPosition, id);
                 }
