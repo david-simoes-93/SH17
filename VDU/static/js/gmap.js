@@ -2,9 +2,29 @@ var myMap;
 var myPano;
 var sv;
 
-function initMap() {
-    var caisCriativo = {lat: 40.6122447, lng: -8.7519046};
+var waypts = [];
+var origin = "";
+var destination = "";
+var driving = false;
 
+var path_points = [];
+var path_index = 0;
+var marker;
+
+var caisCriativo = {lat: 40.6122447, lng: -8.7519046};
+var waypoints = [new google.maps.LatLng(40.6333806,-8.7492999),
+    new google.maps.LatLng(40.6410565,-8.7478676),
+    new google.maps.LatLng(40.6270952,-8.7250694),
+    new google.maps.LatLng(40.6176485,-8.712887),
+    new google.maps.LatLng(40.6104224,-8.7216838),
+    new google.maps.LatLng(40.6375942,-8.6744183)]
+var endLocations = [new google.maps.LatLng(40.6385917,-8.6544511),
+    new google.maps.LatLng(40.642402,-8.6567013),
+    new google.maps.LatLng(40.6439987,-8.6465128),
+    new google.maps.LatLng(40.6371687,-8.6517008),
+    new google.maps.LatLng(40.6435403,-8.6646604)]
+
+function initMap() {
     sv = new google.maps.StreetViewService();
 
     myPano = new google.maps.StreetViewPanorama(document.getElementById('myStreetView'), {
@@ -23,7 +43,6 @@ function initMap() {
         heading: 200,
         pitch: 0
     });
-
 }
 
 function processSVData(data, status) {
@@ -34,18 +53,6 @@ function processSVData(data, status) {
         console.error('Street View data not found for this location.');
     }
 }
-
-$(function() {
-
-var waypts = [];
-var origin = "";
-var destination = "";
-
-var path_points = [];
-var path_index = 0;
-var marker;
-
-
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
     directionsService.route({
@@ -68,28 +75,56 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// random playlist
+function vdu_setRoute(ids){
+    if(ids.length>0) {
+        path_index = 0;
+
+        origin = caisCriativo;
+        waypts = [];
+        for(var i=1; i<ids.length; i++){
+            if(ids[i]>=0 && ids[i]<waypoints.length)
+                waypts.push({location: waypoints[i], stopover: true});
+        }
+        if(ids[0]>=0 && ids[0]<endLocations.length)
+            destination = endLocations[ids[0]]
+        else
+            destination = endLocations[getRandomInt(0,endLocations.length-1)]
+
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
+        myMap = new google.maps.Map(document.getElementById('myMap'), {mapTypeId: 'roadmap'});
+        directionsDisplay.setMap(myMap);
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    }
+}
+
+function vdu_startRoute(){
+    driving = true;
+}
+
+// skip to 90% of path
+function vdu_fastForwardRoute(){
+    path_index = Math.round(path_points.length*0.9);
+}
+
+function vdu_endRoute(){
+    driving = false;
+    waypts = [];
+    path_index = 0;
+
+    initMap();
+}
+/*
+// random gps route
 setInterval(function () {
     if(path_index < path_points.length)
         return;
     path_index=0;
 
-    waypoints = [new google.maps.LatLng(40.6333806,-8.7492999),
-        new google.maps.LatLng(40.6410565,-8.7478676),
-        new google.maps.LatLng(40.6270952,-8.7250694),
-        new google.maps.LatLng(40.6176485,-8.712887),
-        new google.maps.LatLng(40.6104224,-8.7216838),
-        new google.maps.LatLng(40.6375942,-8.6744183),
-        new google.maps.LatLng(40.6435403,-8.6646604)]
-    end = [new google.maps.LatLng(40.6385917,-8.6544511),
-        new google.maps.LatLng(40.642402,-8.6567013),
-        new google.maps.LatLng(40.6439987,-8.6465128),
-        new google.maps.LatLng(40.6371687,-8.6517008)]
-
     origin = new google.maps.LatLng(40.6122447, -8.7519046); //start[getRandomInt(0,3)]
     waypts = [];
     waypts.push({location: waypoints[getRandomInt(0,6)], stopover: true});
-    destination = end[getRandomInt(0,3)]
+    destination = endLocations[getRandomInt(0,3)]
 
     var directionsService = new google.maps.DirectionsService;
     var directionsDisplay = new google.maps.DirectionsRenderer;
@@ -97,43 +132,43 @@ setInterval(function () {
     directionsDisplay.setMap(myMap);
     calculateAndDisplayRoute(directionsService, directionsDisplay);
 }, 10000);
+*/
+
+setInterval(function () {
+    if(driving && path_index < path_points.length){
+        if(marker!=null)
+            marker.setMap(null);
+        marker = new google.maps.Marker({
+            position: path_points[path_index],
+            map: myMap
+        });
+        myMap.setCenter(path_points[path_index]);
+        myMap.setZoom(16);
+        myMap.setMapTypeId('satellite');
+
+        sv.getPanorama({location: path_points[path_index], radius: 50}, processSVData);
+
+        if(path_index+1 < path_points.length) {
+            var p1 = {
+                x: path_points[path_index].lng(),
+                y: path_points[path_index].lat()
+            };
+            var p2 = {
+                x: path_points[path_index+1].lng(),
+                y: path_points[path_index+1].lat()
+            };
 
 
-    setInterval(function () {
-        if(path_index < path_points.length){
-            if(marker!=null)
-                marker.setMap(null);
-            marker = new google.maps.Marker({
-                position: path_points[path_index],
-                map: myMap
+            var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI; // in geometric circle
+            angleDeg = 90-angleDeg; // in google coords
+            myPano.setPov({
+                heading: angleDeg,
+                pitch: 0
             });
-            myMap.setCenter(path_points[path_index]);
-            myMap.setZoom(16);
-            myMap.setMapTypeId('satellite');
-
-            sv.getPanorama({location: path_points[path_index], radius: 50}, processSVData);
-
-            if(path_index+1 < path_points.length) {
-                var p1 = {
-                    x: path_points[path_index].lng(),
-                    y: path_points[path_index].lat()
-                };
-                var p2 = {
-                    x: path_points[path_index+1].lng(),
-                    y: path_points[path_index+1].lat()
-                };
-
-
-                var angleDeg = Math.atan2(p2.y - p1.y, p2.x - p1.x) * 180 / Math.PI; // in geometric circle
-                angleDeg = 90-angleDeg; // in google coords
-                myPano.setPov({
-                    heading: angleDeg,
-                    pitch: 0
-                });
-            }
-
-            path_index++;
         }
-    }, 2000);
 
-});
+        path_index++;
+    }
+}, 2000);
+
+initMap();
