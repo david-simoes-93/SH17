@@ -105,12 +105,6 @@ def index():
 @app.route('/profile/', methods = ['GET'])
 def get_profile(id=''):
 
-    #TODO: remove
-    if not id:
-        id = '45f2d0a3-a2c3-448a-bfb7-a68eb30e5a97'
-    print(id)
-    #TODO: remove end
-
     profile = Profile.query.get(id)
     if profile:
         return profile.as_dict()
@@ -141,13 +135,13 @@ def create_profile(data):
 class Profile(db.Model):
     id = db.Column(db.String, primary_key=True)
     name = db.Column(db.String(20))
-    image = db.Column(db.String(50))
+    image_url = db.Column(db.String(20))
     spotify_id = db.Column(db.Integer)
 
     def __init__(self, id, name, image, spotify_id):
         self.id = id
         self.name = name
-        self.image= image
+        self.image_url= image
         self.spotify_id= spotify_id
 
     def as_dict(self):
