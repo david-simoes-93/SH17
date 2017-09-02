@@ -62,7 +62,7 @@ var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merg
     chart: {
         height: 200,
         width: 200,
-        backgroundColor: '#ccc'
+        backgroundColor: '#000'
     },
     yAxis: [{
         min: 14,
@@ -75,8 +75,8 @@ var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merg
         },
         minorTickWidth: 0,
         tickLength: 85,
-        tickWidth: 5,
-        tickColor: 'white',
+        tickWidth: 4,
+        tickColor: '#eee',
         zIndex: 6,
         stops: [
             [0.1, '#e6f2ff'], // blue
@@ -89,9 +89,10 @@ var chartTemperature = Highcharts.chart('container-temperature', Highcharts.merg
     series: [{
         animation: true,
         dataLabels: {
-            format: '<div style="text-align:center"><span style="font-size:30px;color:' +
-            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
-            '<span style="font-size:15px;color:silver">ºC</span></div>'
+            format: '<div style="text-align:center;"><span style="font-size:30px;color:' +
+            ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white') + '">{y}</span><br/>' +
+            '<span style="font-size:15px;color:silver">ºC</span></div>',
+            y: 70
         },
         borderWidth: 0,
         color: '#ggg',
