@@ -30,6 +30,16 @@ function stop_siri(){
     };
 }
 
+function vdu_enableRecording(){
+    document.getElementById("siri-container-listening").style.display = "block";
+    document.getElementById("siri-container").style.display = "none";
+}
+
+function vdu_disableRecording(){
+    document.getElementById("siri-container-listening").style.display = "none";
+    document.getElementById("siri-container").style.display = "block";
+}
+
 function vdu_displayAlert(msg){
     document.getElementById("event").innerHTML = msg;
 
@@ -103,15 +113,13 @@ $(document).ready(function () {
                 break;
             case 'vdu/listening/in':
                 if(message.value=="1"){
-                    //alert("lol");
-                    document.getElementById("siri-container-listening").style.display = "block";
-                    document.getElementById("siri-container").style.display = "none";
+                    vdu_enableRecording();
                 }else{
-                    document.getElementById("siri-container-listening").style.display = "none";
-                    document.getElementById("siri-container").style.display = "block";
+                    vdu_disableRecording();
                 }
                 break;
             case 'vdu/alerts/in':
+                vdu_disableRecording();
                 vdu_displayAlert(message.value);
                 break;
             case 'vdu/rpm_display/in':
