@@ -84,6 +84,11 @@ $(document).ready(function () {
                     }
                 }
                 break;
+            case 'vdu/hackathon/in':
+                initMap();
+                document.getElementById("myStreetViewHack").style.display = "block";
+                document.getElementById("myStreetView").style.display = "none";
+                break;
             case 'lcu/seatposition/out':
                 var id = getIdFromUID(message.result.profileId);
                 vdu_setPersonInSeat(message.result.lastSeatPosition, id);
