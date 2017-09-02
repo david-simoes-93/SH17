@@ -80,6 +80,10 @@ $(document).ready(function () {
                 vdu_setPersonInSeat(message.result.lastSeatPosition, id);
                // }
                 break;
+            case 'scu/pimp/in':
+                if(message.action=='open')
+                    vdu_playPimpSong();
+                break;
             case 'scu/charger/out':
                 if(message.status=='plugged')
                     vdu_switchCharging();
