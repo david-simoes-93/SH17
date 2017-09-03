@@ -65,7 +65,11 @@ $(document).ready(function () {
         switch (topic) {
             case 'vdu/gps_maps/in':
                 if (message.value) {
-                    vdu_setRoute(message.value.map(Number));
+                    myIds = []
+                    for(var i=0; i<message.value.length; i++){
+                        myIds.push(getIdFromUID(message.value[i]));
+                    }
+                    vdu_setRoute(myIds);
                 }
                 if (message.state) {
                     switch (message.state) {
