@@ -9,6 +9,7 @@ Sponsored by Bosch.
 We implemented a distributed system where voice recognition, natural language processing, text to speech, speech to text, voice localization, and other technologies interacted to create a smart vehicle environment where voice commands can be used to control the car. We won 1st place in the Sunset Hackathon 2017 competition.
 
 [![Demo](https://img.youtube.com/vi/kL9SA_CbQf8/0.jpg)](https://www.youtube.com/watch?v=kL9SA_CbQf8)
+([https://www.youtube.com/watch?v=kL9SA_CbQf8](https://www.youtube.com/watch?v=kL9SA_CbQf8))
 
 ----
 
